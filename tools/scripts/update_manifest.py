@@ -155,6 +155,9 @@ def guess_type(path):
     if filename == "MANIFEST" or filename.startswith("."):
         return None
 
+    if filename.lower().endswith("-manual"):
+        return "manual"
+
     if get_ref(path):
         return "reftest"
 
