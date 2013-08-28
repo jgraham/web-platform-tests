@@ -1,0 +1,12 @@
+[testharness]
+
+[reftest]
+bold_object_default_font-style.html == bold_object_default_font-style-ref.html
+underline_object_default_font-style.html == underline_object_default_font-style-ref.html
+italic_object_default_font-style.html == italic_object_default_font-style-ref.html
+inherit_as_default_value_inherits_values_from_media_element.html == inherit_as_default_value_inherits_values_from_media_element-ref.html
+
+[manual]
+
+[helper]
+

@@ -1,0 +1,11 @@
+[testharness]
+filelist.html
+filelist_multiple_selected_files.html
+filelist_selected_file.html
+
+[reftest]
+
+[manual]
+
+[helper]
+

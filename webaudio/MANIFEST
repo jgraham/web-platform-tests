@@ -1,0 +1,11 @@
+[testharness]
+
+[reftest]
+
+[manual]
+
+[helper]
+specification.html
+README.md
+refresh_idl.rb
+

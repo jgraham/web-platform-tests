@@ -1,0 +1,13 @@
+[testharness]
+xhtml-pubid-1.html
+
+[reftest]
+
+[manual]
+
+[helper]
+xhtml-pubid-3.xhtml
+xhtml-pubid-1.xhtml
+xhtml-pubid-2.xhtml
+xhtml-local.dtd
+

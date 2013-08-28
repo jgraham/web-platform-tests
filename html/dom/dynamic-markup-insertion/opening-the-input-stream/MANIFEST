@@ -1,0 +1,12 @@
+[testharness]
+document.open-02.html
+document.open-01.xhtml
+document.open-03.html
+
+[reftest]
+
+[manual]
+
+[helper]
+document.open-03-frame.html
+

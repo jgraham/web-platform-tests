@@ -1,0 +1,10 @@
+[testharness]
+
+[reftest]
+
+[manual]
+
+[helper]
+corsenabled.php
+auth.php
+

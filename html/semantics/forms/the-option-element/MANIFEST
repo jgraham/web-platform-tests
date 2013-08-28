@@ -1,0 +1,11 @@
+[testharness]
+option-text-recurse.html
+option-text-spaces.html
+option-text-backslash.html
+
+[reftest]
+
+[manual]
+
+[helper]
+

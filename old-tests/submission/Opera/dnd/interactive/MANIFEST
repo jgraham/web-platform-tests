@@ -1,0 +1,12 @@
+[testharness]
+
+[reftest]
+
+[manual]
+
+[helper]
+frames-1.html
+plugins.html
+object-retention.html
+frames.html
+

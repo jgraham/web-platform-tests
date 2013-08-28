@@ -1,0 +1,9 @@
+[testharness]
+
+[reftest]
+figure.html == figure-ref.html
+
+[manual]
+
+[helper]
+

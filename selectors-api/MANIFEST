@@ -1,0 +1,16 @@
+[testharness]
+level1-all.xht
+level1-baseline.html
+level1-additional.html
+
+[reftest]
+
+[manual]
+
+[helper]
+level1-lib.js
+selectors.js
+level1-content.xht
+Status.html
+level1-content.html
+

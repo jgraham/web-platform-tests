@@ -1,0 +1,74 @@
+[testharness]
+
+[reftest]
+line_percent_and_integer_mixed_overlap_move_up.html == line_percent_and_integer_mixed_overlap_move_up-ref.html
+dom_override_cue_align_position_line_size.html == dom_override_cue_align_position_line_size-ref.html
+repaint.html == repaint-ref.html
+basic.html == basic-ref.html
+2_cues_overlapping_completely_move_up.html == 2_cues_overlapping_completely_move_up-ref.html
+2_cues_overlapping_partially_move_up.html == 2_cues_overlapping_partially_move_up-ref.html
+dom_override_remove_cue_while_paused.html == dom_override_remove_cue_while_paused-ref.html
+dom_override_cue_text_while_paused.html == dom_override_cue_text_while_paused-ref.html
+media_height400_with_controls.html == media_height400_with_controls-ref.html
+line_1_wrapped_cue_grow_downwards.html == line_1_wrapped_cue_grow_downwards-ref.html
+3_tracks.html == 3_tracks-ref.html
+2_cues_overlapping_partially_move_down.html == 2_cues_overlapping_partially_move_down-ref.html
+media_with_controls.html == media_with_controls-ref.html
+align_middle_wrapped.html == align_middle_wrapped-ref.html
+disable_controls_reposition.html == disable_controls_reposition-ref.html
+align_middle_position_50.html == align_middle_position_50-ref.html
+one_line_cue_plus_wrapped_cue.html == one_line_cue_plus_wrapped_cue-ref.html
+align_end.html == align_end-ref.html
+align_start_wrapped.html == align_start_wrapped-ref.html
+align_middle_position_gt_50.html == align_middle_position_gt_50-ref.html
+dom_override_cue_line.html == dom_override_cue_line-ref.html
+line_0_is_top.html == line_0_is_top-ref.html
+line_integer_and_percent_mixed_overlap.html == line_integer_and_percent_mixed_overlap-ref.html
+decode_escaped_entities.html == decode_escaped_entities-ref.html
+dom_override_cue_text.html == dom_override_cue_text-ref.html
+navigate_cue_position.html == navigate_cue_position-ref.html
+too_many_cues_wrapped.html == too_many_cues_wrapped-ref.html
+size_50.html == size_50-ref.html
+enable_controls_reposition.html == enable_controls_reposition-ref.html
+align_middle_position_lt_50.html == align_middle_position_lt_50-ref.html
+align_start.html == align_start-ref.html
+line_50_percent.html == line_50_percent-ref.html
+line_integer_and_percent_mixed_overlap_move_up.html == line_integer_and_percent_mixed_overlap_move_up-ref.html
+align_middle_position_lt_50_size_gt_maximum_size.html == align_middle_position_lt_50_size_gt_maximum_size-ref.html
+dom_override_cue_align_position_line_size_while_paused.html == dom_override_cue_align_position_line_size_while_paused-ref.html
+too_many_cues.html == too_many_cues-ref.html
+audio_has_no_subtitles.html == audio_has_no_subtitles-ref.html
+line_-2_wrapped_cue_grow_upwards.html == line_-2_wrapped_cue_grow_upwards-ref.html
+line_percent_and_integer_mixed_overlap.html == line_percent_and_integer_mixed_overlap-ref.html
+align_middle.html == align_middle-ref.html
+cue_too_long.html == cue_too_long-ref.html
+2_tracks.html == 2_tracks-ref.html
+align_end_wrapped.html == align_end_wrapped-ref.html
+
+[manual]
+
+[helper]
+line_50_percent-ref.html
+too_many_cues_wrapped-ref.html
+align_middle_position_gt_50-ref.html
+align_middle_position_50-ref.html
+cue_too_long-ref.html
+align_middle_position_lt_50-ref.html
+align_start-ref.html
+too_many_cues-ref.html
+reftest.list
+align_end-ref.html
+line_integer_and_percent_mixed_overlap-ref.html
+line_integer_and_percent_mixed_overlap_move_up-ref.html
+line_-2_wrapped_cue_grow_upwards-ref.html
+dom_override_cue_line-ref.html
+align_start_wrapped-ref.html
+size_50-ref.html
+audio_has_no_subtitles-ref.html
+line_percent_and_integer_mixed_overlap-ref.html
+2_tracks-ref.html
+align_end_wrapped-ref.html
+dom_override_cue_align_position_line_size_while_paused-ref.html
+align_middle-ref.html
+build-manifest.py
+

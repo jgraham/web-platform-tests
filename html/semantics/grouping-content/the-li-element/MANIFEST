@@ -1,0 +1,14 @@
+[testharness]
+grouping-li-novalue-MANUAL.html
+grouping-li.html
+
+[reftest]
+grouping-li-reftest-002.html == grouping-li-reftest-002-ref.html
+grouping-li-reftest-001.html == grouping-li-reftest-001-ref.html
+
+[manual]
+
+[helper]
+grouping-li-reftest-001-ref.html
+grouping-li-reftest-002-ref.html
+

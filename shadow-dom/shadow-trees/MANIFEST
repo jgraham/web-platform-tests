@@ -1,0 +1,20 @@
+[testharness]
+
+[reftest]
+hosting-multiple-shadow-trees-002.html == hosting-multiple-shadow-trees-002-ref.html
+hosting-multiple-shadow-trees-003.html == hosting-multiple-shadow-trees-003-ref.html
+shadow-root-002.html == shadow-root-002-ref.html
+hosting-multiple-shadow-trees-006.html == hosting-multiple-shadow-trees-006-ref.html
+shadow-root-001.html == shadow-root-001-ref.html
+hosting-multiple-shadow-trees-005.html == hosting-multiple-shadow-trees-005-ref.html
+hosting-multiple-shadow-trees-004.html == hosting-multiple-shadow-trees-004-ref.html
+text-decoration-001.html == text-decoration-001-ref.html
+
+[manual]
+
+[helper]
+hosting-multiple-shadow-trees-004-ref.html
+shadow-root-001-ref.html
+text-decoration-001-ref.html
+hosting-multiple-shadow-trees-005-ref.html
+

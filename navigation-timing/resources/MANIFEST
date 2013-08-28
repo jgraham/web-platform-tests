@@ -1,0 +1,16 @@
+[testharness]
+
+[reftest]
+
+[manual]
+
+[helper]
+redirect.php
+blank_page_yellow_with_onunload.html
+blank_page_meta_redirect.html
+blank_page_unload.html
+blank_page_green.html
+blank_page_green_with_onunload.html
+blank_page_yellow.html
+webperftestharness.js
+

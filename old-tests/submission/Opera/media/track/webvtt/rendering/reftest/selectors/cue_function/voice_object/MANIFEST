@@ -1,0 +1,43 @@
+[testharness]
+
+[reftest]
+voice_outline_shorthand.html == voice_outline_shorthand-ref.html
+voice_outline_properties.html == voice_outline_properties-ref.html
+voice_transition_with_timestamp.html == voice_transition_with_timestamp-ref.html
+voice_font_shorthand.html == voice_font_shorthand-ref.html
+voice_timestamp_past.html == voice_timestamp_past-ref.html
+voice_white-space_normal_wrapped.html == voice_white-space_normal_wrapped-ref.html
+voice_with_class.html == voice_with_class-ref.html
+voice_voice_attribute.html == voice_voice_attribute-ref.html
+voice_animation_with_timestamp.html == voice_animation_with_timestamp-ref.html
+voice_white-space_pre_wrapped.html == voice_white-space_pre_wrapped-ref.html
+voice_white-space_pre-wrap_wrapped.html == voice_white-space_pre-wrap_wrapped-ref.html
+voice_namespace.html == voice_namespace-ref.html
+voice_font_properties.html == voice_font_properties-ref.html
+voice_with_class_object_specific_selector.html == voice_with_class_object_specific_selector-ref.html
+voice_background_shorthand.html == voice_background_shorthand-ref.html
+voice_white-space_pre-line_wrapped.html == voice_white-space_pre-line_wrapped-ref.html
+voice_white-space_nowrap.html == voice_white-space_nowrap-ref.html
+voice_color.html == voice_color-ref.html
+voice_text-decoration_line-through.html == voice_text-decoration_line-through-ref.html
+voice_text-shadow.html == voice_text-shadow-ref.html
+voice_background_properties.html == voice_background_properties-ref.html
+voice_timestamp_future.html == voice_timestamp_future-ref.html
+
+[manual]
+
+[helper]
+voice_background_shorthand-ref.html
+voice_font_properties-ref.html
+voice_text-shadow-ref.html
+voice_white-space_pre-line_wrapped-ref.html
+voice_outline_shorthand-ref.html
+voice_color-ref.html
+voice_timestamp_future-ref.html
+voice_voice_attribute-ref.html
+voice_transition_with_timestamp-ref.html
+voice_text-decoration_line-through-ref.html
+voice_white-space_pre_wrapped-ref.html
+voice_with_class_object_specific_selector-ref.html
+voice_background_properties-ref.html
+

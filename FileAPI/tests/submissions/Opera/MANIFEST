@@ -1,0 +1,11 @@
+[testharness]
+BlobBuilder.html
+new-Blob.html
+Blob-slice.html
+
+[reftest]
+
+[manual]
+
+[helper]
+

@@ -1,0 +1,12 @@
+[testharness]
+a-stringifier.html
+a.text-setter-01.html
+a.text-getter-01.html
+
+[reftest]
+
+[manual]
+
+[helper]
+anchor_href.htm
+

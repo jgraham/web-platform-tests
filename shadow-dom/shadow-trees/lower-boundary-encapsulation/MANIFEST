@@ -1,0 +1,15 @@
+[testharness]
+test-001.html
+test-003.html
+test-005.html
+test-004.html
+
+[reftest]
+distribution-001.html == distribution-001-ref.html
+distribution-002.html == distribution-002-ref.html
+
+[manual]
+
+[helper]
+distribution-002-ref.html
+

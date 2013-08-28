@@ -1,0 +1,10 @@
+[testharness]
+
+[reftest]
+
+[manual]
+
+[helper]
+buildtests.py
+common.js
+

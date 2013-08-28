@@ -1,0 +1,13 @@
+[testharness]
+
+[reftest]
+
+[manual]
+
+[helper]
+object_border_pixel.xhtml
+object_border-ref.xhtml
+img_border-ref.xhtml
+object_border_perc.xhtml
+img_border_percent.xhtml
+

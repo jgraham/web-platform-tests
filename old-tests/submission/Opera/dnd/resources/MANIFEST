@@ -1,0 +1,17 @@
+[testharness]
+
+[reftest]
+
+[manual]
+
+[helper]
+1x1-transparent.gif
+100x100-navy.png
+filler.html
+crossorigin.js
+fail.png
+boxnavy.swf
+32MB.txt
+pass.png
+circle.png
+

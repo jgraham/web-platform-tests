@@ -1,0 +1,11 @@
+[testharness]
+crossOrigin.html
+textTracks.html
+addTextTrack.html
+
+[reftest]
+
+[manual]
+
+[helper]
+

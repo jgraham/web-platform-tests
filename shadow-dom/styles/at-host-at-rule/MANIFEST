@@ -1,0 +1,10 @@
+[testharness]
+test-001.html
+matching-specificity-of-css-rules-001.html
+
+[reftest]
+
+[manual]
+
+[helper]
+

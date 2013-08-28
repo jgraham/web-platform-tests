@@ -1,0 +1,10 @@
+[testharness]
+idbkeyrange_incorrect.htm
+
+[reftest]
+
+[manual]
+
+[helper]
+support.js
+

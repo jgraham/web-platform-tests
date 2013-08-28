@@ -1,0 +1,10 @@
+[testharness]
+structuredclone_0.html
+
+[reftest]
+
+[manual]
+
+[helper]
+echo.js
+

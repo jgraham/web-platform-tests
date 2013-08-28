@@ -1,0 +1,12 @@
+[testharness]
+audio_attributes.html
+audio_constructor.html
+
+[reftest]
+
+[manual]
+
+[helper]
+audio_001.htm
+audio_002.htm
+

@@ -1,0 +1,13 @@
+[testharness]
+
+[reftest]
+
+[manual]
+
+[helper]
+manifest.json
+data.json
+report.json
+caniuse.json
+toc.json
+

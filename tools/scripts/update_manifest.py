@@ -73,7 +73,8 @@ class Manifest(object):
                     data["ref_url"] = items.pop()
 
                 for item in items:
-                    key, value = item.split(".", 1)
+                    assert " " not in line, line
+                    key, value = item.split(":", 1)
                     if key in data:
                         raise ManifestError("Duplicate key %s" % key)
                     else:

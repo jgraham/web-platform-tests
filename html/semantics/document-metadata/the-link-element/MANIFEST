@@ -1,0 +1,10 @@
+[testharness]
+link-rellist.html
+link-style-error-01.html
+
+[reftest]
+
+[manual]
+
+[helper]
+

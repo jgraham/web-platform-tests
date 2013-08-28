@@ -1,0 +1,16 @@
+[testharness]
+ProgressEvent.html
+Event-constructors.html
+Event-constants.html
+Event-defaultPrevented.html
+Event-propagation.html
+Event-initEvent.html
+Event-type.html
+EventTarget-dispatchEvent.html
+
+[reftest]
+
+[manual]
+
+[helper]
+

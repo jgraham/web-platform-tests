@@ -1,0 +1,12 @@
+[testharness]
+navigator-indexed.html
+content.html
+protocol.html
+
+[reftest]
+
+[manual]
+
+[helper]
+contains.json
+

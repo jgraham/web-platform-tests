@@ -1,0 +1,10 @@
+[testharness]
+
+[reftest]
+
+[manual]
+
+[helper]
+set-cookie.php
+sleep_2.php
+

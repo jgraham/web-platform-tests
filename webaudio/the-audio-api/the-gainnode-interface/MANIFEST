@@ -1,0 +1,11 @@
+[testharness]
+test.html
+idl-test.html
+
+[reftest]
+
+[manual]
+
+[helper]
+gain-expected.wav
+

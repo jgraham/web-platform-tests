@@ -1,0 +1,10 @@
+[testharness]
+pageload-video.html
+pageload-image.html
+
+[reftest]
+
+[manual]
+
+[helper]
+

@@ -1,0 +1,16 @@
+[testharness]
+004.html
+007.html
+003.html
+001.html
+005.html
+language.html
+002.html
+006.html
+
+[reftest]
+
+[manual]
+
+[helper]
+

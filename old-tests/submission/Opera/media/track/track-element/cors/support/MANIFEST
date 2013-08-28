@@ -1,0 +1,13 @@
+[testharness]
+
+[reftest]
+
+[manual]
+
+[helper]
+delete-log.php
+cors-tester.php
+common.js
+set-cookie.html
+remove-cookie.html
+

@@ -1,0 +1,13 @@
+[testharness]
+audio_004.htm
+audio_005.htm
+audio_003.htm
+
+[reftest]
+audio_001.htm == audio_001-ref.htm
+audio_002.htm == audio_002-ref.htm
+
+[manual]
+
+[helper]
+

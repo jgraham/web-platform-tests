@@ -1,0 +1,10 @@
+[testharness]
+style-error-01.html
+
+[reftest]
+
+[manual]
+
+[helper]
+html_style_in_comment.xhtml
+

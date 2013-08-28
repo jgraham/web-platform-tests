@@ -1,0 +1,11 @@
+[testharness]
+throwing-in-listener-and-window-error-event.html
+event-phases-order.html
+throwing-in-listener-when-all-have-not-run-yet.html
+
+[reftest]
+
+[manual]
+
+[helper]
+

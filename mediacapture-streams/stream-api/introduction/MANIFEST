@@ -1,0 +1,10 @@
+[testharness]
+disabled-audio-silence.html
+disabled-video-black.html
+
+[reftest]
+
+[manual]
+
+[helper]
+

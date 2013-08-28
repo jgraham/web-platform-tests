@@ -1,0 +1,44 @@
+[testharness]
+
+[reftest]
+class_namespace.html == class_namespace-ref.html
+class_white-space_pre-wrap_wrapped.html == class_white-space_pre-wrap_wrapped-ref.html
+class_background_shorthand.html == class_background_shorthand-ref.html
+class_white-space_pre_wrapped.html == class_white-space_pre_wrapped-ref.html
+class_text-shadow.html == class_text-shadow-ref.html
+class_font_properties.html == class_font_properties-ref.html
+class_text-decoration_line-through.html == class_text-decoration_line-through-ref.html
+class_animation_with_timestamp.html == class_animation_with_timestamp-ref.html
+class_color.html == class_color-ref.html
+class_white-space_pre-line_wrapped.html == class_white-space_pre-line_wrapped-ref.html
+class_white-space_normal_wrapped.html == class_white-space_normal_wrapped-ref.html
+class_white-space_nowrap.html == class_white-space_nowrap-ref.html
+class_timestamp_past.html == class_timestamp_past-ref.html
+class_outline_shorthand.html == class_outline_shorthand-ref.html
+class_with_class.html == class_with_class-ref.html
+class_outline_properties.html == class_outline_properties-ref.html
+class_timestamp_future.html == class_timestamp_future-ref.html
+class_font_shorthand.html == class_font_shorthand-ref.html
+class_with_class_object_specific_selector.html == class_with_class_object_specific_selector-ref.html
+class_transition_with_timestamp.html == class_transition_with_timestamp-ref.html
+class_background_properties.html == class_background_properties-ref.html
+
+[manual]
+
+[helper]
+class_with_class_object_specific_selector-ref.html
+class_timestamp_past-ref.html
+class_text-decoration_line-through-ref.html
+class_outline_properties-ref.html
+class_white-space_pre_wrapped-ref.html
+class_with_class-ref.html
+class_transition_with_timestamp-ref.html
+class_timestamp_future-ref.html
+class_text-shadow-ref.html
+class_background_shorthand-ref.html
+class_white-space_nowrap-ref.html
+class_background_properties-ref.html
+class_font_shorthand-ref.html
+class_outline_shorthand-ref.html
+class_color-ref.html
+

@@ -1,0 +1,11 @@
+[testharness]
+001.html
+002.html
+
+[reftest]
+
+[manual]
+
+[helper]
+003-1.php
+

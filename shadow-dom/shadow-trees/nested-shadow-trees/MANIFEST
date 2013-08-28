@@ -1,0 +1,11 @@
+[testharness]
+test-001.html
+
+[reftest]
+nested_tree_reftest.html == nested_tree_reftest-ref.html
+
+[manual]
+
+[helper]
+nested_tree_reftest-ref.html
+

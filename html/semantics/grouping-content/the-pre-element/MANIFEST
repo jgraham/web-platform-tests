@@ -1,0 +1,11 @@
+[testharness]
+grouping-pre.html
+
+[reftest]
+grouping-pre-reftest-001.html == grouping-pre-reftest-001-ref.html
+pre-newline-bidi.html == pre-newline-bidi-ref.html
+
+[manual]
+
+[helper]
+

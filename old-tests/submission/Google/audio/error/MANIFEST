@@ -1,0 +1,13 @@
+[testharness]
+error_src_not_supported_is_4.html
+error_src_not_supported.html
+error_property_exists.html
+error_onerror_called_on_bogus_source.html
+error_null.html
+
+[reftest]
+
+[manual]
+
+[helper]
+

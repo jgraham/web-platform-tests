@@ -1,0 +1,14 @@
+[testharness]
+
+[reftest]
+
+[manual]
+
+[helper]
+syntax-error-in-setInterval.js
+undefined-variable.js
+undefined-variable-in-setInterval.js
+undefined-variable-in-setTimeout.js
+syntax-error.js
+syntax-error-in-setTimeout.js
+

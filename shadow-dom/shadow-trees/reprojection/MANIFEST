@@ -1,0 +1,13 @@
+[testharness]
+test-001.html
+
+[reftest]
+reprojection-001.html == reprojection-001-ref.html
+reprojection-002.html == reprojection-002-ref.html
+
+[manual]
+
+[helper]
+reprojection-001-ref.html
+reprojection-002-ref.html
+

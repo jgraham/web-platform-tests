@@ -1,0 +1,41 @@
+[testharness]
+
+[reftest]
+bold_white-space_pre-wrap_wrapped.html == bold_white-space_pre-wrap_wrapped-ref.html
+bold_font_properties.html == bold_font_properties-ref.html
+bold_color.html == bold_color-ref.html
+bold_namespace.html == bold_namespace-ref.html
+bold_outline_properties.html == bold_outline_properties-ref.html
+bold_with_class_object_specific_selector.html == bold_with_class_object_specific_selector-ref.html
+bold_white-space_pre_wrapped.html == bold_white-space_pre_wrapped-ref.html
+bold_text-shadow.html == bold_text-shadow-ref.html
+bold_animation_with_timestamp.html == bold_animation_with_timestamp-ref.html
+bold_with_class.html == bold_with_class-ref.html
+bold_white-space_pre-line_wrapped.html == bold_white-space_pre-line_wrapped-ref.html
+bold_transition_with_timestamp.html == bold_transition_with_timestamp-ref.html
+bold_timestamp_past.html == bold_timestamp_past-ref.html
+bold_timestamp_future.html == bold_timestamp_future-ref.html
+bold_white-space_normal_wrapped.html == bold_white-space_normal_wrapped-ref.html
+bold_text-decoration_line-through.html == bold_text-decoration_line-through-ref.html
+bold_background_properties.html == bold_background_properties-ref.html
+bold_white-space_nowrap.html == bold_white-space_nowrap-ref.html
+bold_outline_shorthand.html == bold_outline_shorthand-ref.html
+bold_background_shorthand.html == bold_background_shorthand-ref.html
+bold_font_shorthand.html == bold_font_shorthand-ref.html
+
+[manual]
+
+[helper]
+bold_white-space_pre-line_wrapped-ref.html
+bold_outline_properties-ref.html
+bold_outline_shorthand-ref.html
+bold_white-space_nowrap-ref.html
+bold_white-space_pre_wrapped-ref.html
+bold_text-decoration_line-through-ref.html
+bold_background_properties-ref.html
+bold_timestamp_past-ref.html
+bold_timestamp_future-ref.html
+bold_background_shorthand-ref.html
+bold_white-space_normal_wrapped-ref.html
+bold_font_shorthand-ref.html
+

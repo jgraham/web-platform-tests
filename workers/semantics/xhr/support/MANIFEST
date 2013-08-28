@@ -1,0 +1,11 @@
+[testharness]
+
+[reftest]
+
+[manual]
+
+[helper]
+006-1.js
+001-1.xml
+005-1.js
+

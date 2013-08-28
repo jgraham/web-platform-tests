@@ -1,0 +1,11 @@
+[testharness]
+
+[reftest]
+preload-none-poster.html == preload-none-poster-ref.html
+
+[manual]
+
+[helper]
+reftest.list
+preload-none-poster-ref.html
+

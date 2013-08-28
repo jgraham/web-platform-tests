@@ -1,0 +1,22 @@
+[testharness]
+
+[reftest]
+u002E_u2028_u05D0.html == u002E_u2028_u05D0-ref.html
+bidi_ruby.html == bidi_ruby-ref.html
+u0041_first.html == u0041_first-ref.html
+u002E_u2029_u05D0.html == u002E_u2029_u05D0-ref.html
+u002E_LF_u05D0.html == u002E_LF_u05D0-ref.html
+u05D0_first.html == u05D0_first-ref.html
+u0628_first.html == u0628_first-ref.html
+u06E9_no_strong_dir.html == u06E9_no_strong_dir-ref.html
+
+[manual]
+
+[helper]
+u0041_first-ref.html
+u002E_LF_u05D0-ref.html
+u0628_first-ref.html
+u05D0_first-ref.html
+u002E_u2029_u05D0-ref.html
+u06E9_no_strong_dir-ref.html
+

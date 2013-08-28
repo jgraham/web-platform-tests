@@ -1,0 +1,13 @@
+[testharness]
+
+[reftest]
+
+[manual]
+
+[helper]
+foreign_content_002.html
+foreign_content_012.html
+foreign_content_014.html
+foreign_content_015.html
+foreign_content_007.html
+

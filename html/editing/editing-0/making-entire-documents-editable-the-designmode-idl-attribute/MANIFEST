@@ -1,0 +1,10 @@
+[testharness]
+user-interaction-editing-designMode.html
+
+[reftest]
+
+[manual]
+
+[helper]
+original-id.json
+

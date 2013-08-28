@@ -1,0 +1,10 @@
+[testharness]
+
+[reftest]
+
+[manual]
+
+[helper]
+canvas_complexshapes_beziercurveto_001.htm
+canvas_complexshapes_arcto_001.htm
+

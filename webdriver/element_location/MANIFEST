@@ -1,0 +1,11 @@
+[testharness]
+
+[reftest]
+
+[manual]
+
+[helper]
+__init__.py
+element_location_test.py
+elements.html
+

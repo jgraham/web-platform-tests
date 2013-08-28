@@ -1,0 +1,14 @@
+[testharness]
+setting-members.html
+members.html
+returns-same-object.html
+worker-separate-file.html
+
+[reftest]
+
+[manual]
+
+[helper]
+post-location-members.js
+helper-redirect.php
+

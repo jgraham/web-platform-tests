@@ -1,0 +1,42 @@
+[testharness]
+
+[reftest]
+underline_with_class_object_specific_selector.html == underline_with_class_object_specific_selector-ref.html
+underline_text-decoration_line-through.html == underline_text-decoration_line-through-ref.html
+underline_font_properties.html == underline_font_properties-ref.html
+underline_font_shorthand.html == underline_font_shorthand-ref.html
+underline_transition_with_timestamp.html == underline_transition_with_timestamp-ref.html
+underline_with_class.html == underline_with_class-ref.html
+underline_background_shorthand.html == underline_background_shorthand-ref.html
+underline_namespace.html == underline_namespace-ref.html
+underline_background_properties.html == underline_background_properties-ref.html
+underline_white-space_normal_wrapped.html == underline_white-space_normal_wrapped-ref.html
+underline_white-space_nowrap.html == underline_white-space_nowrap-ref.html
+underline_white-space_pre-wrap_wrapped.html == underline_white-space_pre-wrap_wrapped-ref.html
+underline_text-shadow.html == underline_text-shadow-ref.html
+underline_timestamp_future.html == underline_timestamp_future-ref.html
+underline_white-space_pre_wrapped.html == underline_white-space_pre_wrapped-ref.html
+underline_outline_properties.html == underline_outline_properties-ref.html
+underline_color.html == underline_color-ref.html
+underline_timestamp_past.html == underline_timestamp_past-ref.html
+underline_outline_shorthand.html == underline_outline_shorthand-ref.html
+underline_white-space_pre-line_wrapped.html == underline_white-space_pre-line_wrapped-ref.html
+underline_animation_with_timestamp.html == underline_animation_with_timestamp-ref.html
+
+[manual]
+
+[helper]
+underline_white-space_pre-wrap_wrapped-ref.html
+underline_background_shorthand-ref.html
+underline_with_class-ref.html
+underline_white-space_normal_wrapped-ref.html
+underline_timestamp_future-ref.html
+underline_background_properties-ref.html
+underline_outline_properties-ref.html
+underline_white-space_pre_wrapped-ref.html
+underline_animation_with_timestamp-ref.html
+underline_timestamp_past-ref.html
+underline_color-ref.html
+underline_white-space_pre-line_wrapped-ref.html
+underline_outline_shorthand-ref.html
+

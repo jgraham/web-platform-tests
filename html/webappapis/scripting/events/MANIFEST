@@ -1,0 +1,12 @@
+[testharness]
+body-onload.html
+event-handler-spec-example.html
+event-handler-javascript.html
+
+[reftest]
+
+[manual]
+
+[helper]
+contains.json
+

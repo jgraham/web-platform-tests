@@ -1,0 +1,11 @@
+[testharness]
+close-in-upgradeneeded.html
+abort-in-initial-upgradeneeded.html
+
+[reftest]
+
+[manual]
+
+[helper]
+support.js
+

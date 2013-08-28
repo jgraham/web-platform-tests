@@ -1,0 +1,10 @@
+[testharness]
+htmloptionscollection.html
+
+[reftest]
+
+[manual]
+
+[helper]
+contains.json
+

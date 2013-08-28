@@ -1,0 +1,10 @@
+[testharness]
+selection.html
+
+[reftest]
+
+[manual]
+
+[helper]
+original-id.json
+

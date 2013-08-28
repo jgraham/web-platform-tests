@@ -1,0 +1,12 @@
+[testharness]
+
+[reftest]
+
+[manual]
+
+[helper]
+dragndrop.hxml
+mouseup.hxml
+dragndrop.hx
+mouseup.hx
+

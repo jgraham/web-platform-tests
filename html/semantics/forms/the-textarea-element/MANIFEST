@@ -1,0 +1,13 @@
+[testharness]
+textarea-type.html
+
+[reftest]
+textarea-newline-bidi.html == textarea-newline-bidi-ref.html
+
+[manual]
+
+[helper]
+wrap-reflect-1-ref.html
+wrap-reflect-1a.html
+wrap-reflect-1b.html
+

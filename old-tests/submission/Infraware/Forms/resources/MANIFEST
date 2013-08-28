@@ -1,0 +1,17 @@
+[testharness]
+
+[reftest]
+
+[manual]
+
+[helper]
+apisample.htm
+testharnessreport.js
+WebIDLParser.js
+testharness.css
+apisample2.htm
+apisample3.htm
+testharness.js
+idlharness.js
+readme.md
+

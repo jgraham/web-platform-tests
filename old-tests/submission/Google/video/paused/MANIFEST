@@ -1,0 +1,10 @@
+[testharness]
+paused_true_during_pause.html
+paused_false_during_play.html
+
+[reftest]
+
+[manual]
+
+[helper]
+

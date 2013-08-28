@@ -1,0 +1,57 @@
+[testharness]
+
+[reftest]
+cue_func_selector_single_colon.html == cue_func_selector_single_colon-ref.html
+color_hsla.html == color_hsla-ref.html
+not_root_selector.html == not_root_selector-ref.html
+white-space_pre-line_wrapped.html == white-space_pre-line_wrapped-ref.html
+text-decoration_line-through.html == text-decoration_line-through-ref.html
+not_allowed_properties.html == not_allowed_properties-ref.html
+white-space_normal_wrapped.html == white-space_normal_wrapped-ref.html
+white-space_pre_wrapped.html == white-space_pre_wrapped-ref.html
+white-space_pre-wrap_wrapped.html == white-space_pre-wrap_wrapped-ref.html
+inherit_values_from_media_element.html == inherit_values_from_media_element-ref.html
+font_shorthand.html == font_shorthand-ref.html
+type_selector_root.html == type_selector_root-ref.html
+background_shorthand_css_relative_url.html == background_shorthand_css_relative_url-ref.html
+font_properties.html == font_properties-ref.html
+root_selector.html == root_selector-ref.html
+id_color.html == id_color-ref.html
+root_namespace.html == root_namespace-ref.html
+outline_shorthand.html == outline_shorthand-ref.html
+white-space_nowrap_wrapped.html == white-space_nowrap_wrapped-ref.html
+text-shadow.html == text-shadow-ref.html
+color_rgba.html == color_rgba-ref.html
+background_box.html == background_box-ref.html
+white-space_pre.html == white-space_pre-ref.html
+text-decoration_underline.html == text-decoration_underline-ref.html
+text-decoration_overline_underline_line-through.html == text-decoration_overline_underline_line-through-ref.html
+background_shorthand.html == background_shorthand-ref.html
+text-decoration_overline.html == text-decoration_overline-ref.html
+outline_properties.html == outline_properties-ref.html
+background_properties.html == background_properties-ref.html
+color_hex.html == color_hex-ref.html
+
+[manual]
+
+[helper]
+text-shadow-ref.html
+white-space_pre_wrapped-ref.html
+white-space_pre-wrap_wrapped-ref.html
+white-space_normal_wrapped-ref.html
+not_allowed_properties-ref.html
+background_box-ref.html
+root_selector-ref.html
+font_shorthand-ref.html
+id_color-ref.html
+background_shorthand-ref.html
+text-decoration_overline-ref.html
+text-decoration_overline_underline_line-through-ref.html
+outline_shorthand-ref.html
+color_rgba-ref.html
+white-space_pre-ref.html
+outline_properties-ref.html
+color_hex-ref.html
+text-decoration_underline-ref.html
+background_properties-ref.html
+

@@ -1,0 +1,15 @@
+[testharness]
+kind.html
+track.html
+readyState.html
+default.html
+srclang.html
+label.html
+src.html
+
+[reftest]
+
+[manual]
+
+[helper]
+

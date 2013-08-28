@@ -1,0 +1,11 @@
+[testharness]
+interfaces.html
+FormData-append.html
+
+[reftest]
+
+[manual]
+
+[helper]
+manifest.txt
+

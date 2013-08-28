@@ -1,0 +1,16 @@
+[testharness]
+
+[reftest]
+single_quote.html == single_quote-ref.html
+size_99.html == size_99-ref.html
+media_404_omit_subtitles.html == media_404_omit_subtitles-ref.html
+size_90.html == size_90-ref.html
+9_cues_overlapping_completely.html == 9_cues_overlapping_completely-ref.html
+media_height_19.html == media_height_19-ref.html
+9_cues_overlapping_completely_all_cues_have_same_timestamp.html == 9_cues_overlapping_completely_all_cues_have_same_timestamp-ref.html
+
+[manual]
+
+[helper]
+9_cues_overlapping_completely-ref.html
+

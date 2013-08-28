@@ -1,0 +1,10 @@
+[testharness]
+
+[reftest]
+
+[manual]
+
+[helper]
+blank_page_green.html
+pagevistestharness.js
+

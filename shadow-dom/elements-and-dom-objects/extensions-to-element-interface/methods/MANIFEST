@@ -1,0 +1,13 @@
+[testharness]
+test-001.html
+test-002.html
+test-003.html
+non-element-nodes-001.html
+elements-001.html
+
+[reftest]
+
+[manual]
+
+[helper]
+

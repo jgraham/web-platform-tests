@@ -1,0 +1,12 @@
+[testharness]
+
+[reftest]
+
+[manual]
+
+[helper]
+encodingtests-15-inverse.css
+encodingtests-utf8.css
+encodingtests-15.css
+encodingtests-1.css
+

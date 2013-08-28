@@ -1,0 +1,12 @@
+[testharness]
+string-list-ordering.htm
+interfaces.htm
+cursor-overloads.htm
+
+[reftest]
+
+[manual]
+
+[helper]
+support.js
+

@@ -1,0 +1,12 @@
+[testharness]
+
+[reftest]
+br-bidi-in-inline-ancestors.html == br-bidi-in-inline-ancestors-ref.html
+br-bidi.html == br-bidi-ref.html
+
+[manual]
+
+[helper]
+br-bidi-in-inline-ancestors-ref.html
+br-bidi-ref.html
+

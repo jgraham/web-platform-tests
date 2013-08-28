@@ -1,0 +1,13 @@
+[testharness]
+interfaces.html
+historical.html
+interface-objects.html
+
+[reftest]
+
+[manual]
+
+[helper]
+common.js
+constants.js
+

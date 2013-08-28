@@ -1,0 +1,15 @@
+[testharness]
+Math.max.html
+Math.min.html
+Object.prototype.hasOwnProperty-order.html
+WeakMap.prototype-properties.html
+Array.prototype.join-order.html
+Array.DefineOwnProperty.html
+
+[reftest]
+
+[manual]
+
+[helper]
+Math.maxmin.js
+

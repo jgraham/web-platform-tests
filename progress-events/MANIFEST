@@ -1,0 +1,11 @@
+[testharness]
+interface.html
+constructor.html
+
+[reftest]
+
+[manual]
+
+[helper]
+Status.html
+

@@ -1,0 +1,12 @@
+[testharness]
+
+[reftest]
+
+[manual]
+
+[helper]
+entities.dat
+tags.dat
+timestamps.dat
+tree-building.dat
+

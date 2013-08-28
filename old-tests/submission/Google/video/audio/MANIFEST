@@ -1,0 +1,12 @@
+[testharness]
+audio_reflects_empty_value.html
+audio_reflects_no_value.html
+audio_reflects_muted.html
+audio_property_exists.html
+
+[reftest]
+
+[manual]
+
+[helper]
+

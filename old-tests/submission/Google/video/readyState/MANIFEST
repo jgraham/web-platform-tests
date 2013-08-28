@@ -1,0 +1,15 @@
+[testharness]
+readyState_property_exists.html
+readyState_initial.html
+readyState_during_canplaythrough.html
+readyState_during_playing.html
+readyState_during_loadedmetadata.html
+readyState_during_loadeddata.html
+readyState_during_canplay.html
+
+[reftest]
+
+[manual]
+
+[helper]
+

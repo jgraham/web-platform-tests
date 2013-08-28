@@ -1,0 +1,10 @@
+[testharness]
+
+[reftest]
+bidi-001.html == bidi-001-ref.html
+
+[manual]
+
+[helper]
+bidi-001-ref.html
+

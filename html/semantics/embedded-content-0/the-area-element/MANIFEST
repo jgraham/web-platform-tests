@@ -1,0 +1,11 @@
+[testharness]
+area-stringifier.html
+
+[reftest]
+
+[manual]
+
+[helper]
+area_nohref.xhtml
+test-area.xhtml
+

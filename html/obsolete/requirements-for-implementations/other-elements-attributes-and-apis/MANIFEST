@@ -1,0 +1,15 @@
+[testharness]
+heading-obsolete-attributes-01.html
+script-IDL-event-htmlfor.html
+document-color-04.html
+document-color-02.html
+document-color-03.html
+document-color-01.html
+
+[reftest]
+
+[manual]
+
+[helper]
+original-id.json
+

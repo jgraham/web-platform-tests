@@ -1,0 +1,11 @@
+[testharness]
+document.writeln-02.html
+document.writeln-01.xhtml
+
+[reftest]
+
+[manual]
+
+[helper]
+original-id.json
+

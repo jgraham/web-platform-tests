@@ -1,0 +1,17 @@
+[testharness]
+
+[reftest]
+
+[manual]
+
+[helper]
+spec.yaml
+current-work-canvas.xhtml
+gentest.py
+tests2dtext.yaml
+tests.yaml
+LICENSE.txt
+templates.yaml
+tests2d.yaml
+specextract.py
+

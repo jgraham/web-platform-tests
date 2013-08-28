@@ -1,0 +1,12 @@
+[testharness]
+
+[reftest]
+
+[manual]
+
+[helper]
+clock.manifest
+section_many.manifest
+url_check.manifest
+section_empty.manifest
+

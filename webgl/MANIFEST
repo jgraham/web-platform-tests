@@ -1,0 +1,15 @@
+[testharness]
+bufferSubData.html
+compressedTexSubImage2D.html
+uniformMatrixNfv.html
+compressedTexImage2D.html
+texImage2D.html
+texSubImage2D.html
+
+[reftest]
+
+[manual]
+
+[helper]
+common.js
+

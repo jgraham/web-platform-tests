@@ -1,0 +1,13 @@
+[testharness]
+033.html
+049.html
+050.html
+
+[reftest]
+
+[manual]
+
+[helper]
+index.html
+harness.js
+

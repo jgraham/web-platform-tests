@@ -1,0 +1,10 @@
+[testharness]
+
+[reftest]
+
+[manual]
+
+[helper]
+colgroup_valign_bottom.xhtml
+colgroup_valign_top.xhtml
+

@@ -1,0 +1,11 @@
+[testharness]
+
+[reftest]
+
+[manual]
+
+[helper]
+body_link.xhtml
+test-body.xhtml
+body_text_00ffff.xhtml
+

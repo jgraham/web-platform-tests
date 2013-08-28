@@ -1,0 +1,11 @@
+[testharness]
+event-path-002.html
+event-path-001.html
+event-path-003.html
+
+[reftest]
+
+[manual]
+
+[helper]
+

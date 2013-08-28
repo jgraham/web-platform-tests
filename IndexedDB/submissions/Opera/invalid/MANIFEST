@@ -1,0 +1,12 @@
+[testharness]
+idbfactory_deleteDatabase2.htm
+idbcursor_continue_index-duplicate.htm
+idbfactory_deleteDatabase.htm
+throw.htm
+
+[reftest]
+
+[manual]
+
+[helper]
+

@@ -1,0 +1,16 @@
+[testharness]
+test-001.html
+test-002.html
+test-007.html
+test-008.html
+test-003.html
+test-006.html
+test-005.html
+test-004.html
+
+[reftest]
+
+[manual]
+
+[helper]
+

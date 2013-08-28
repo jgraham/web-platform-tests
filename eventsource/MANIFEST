@@ -1,0 +1,11 @@
+[testharness]
+eventsource-constructor-url-bogus.htm
+eventsource-constructor-non-same-origin.htm
+
+[reftest]
+
+[manual]
+
+[helper]
+README.md
+

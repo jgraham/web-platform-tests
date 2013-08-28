@@ -1,0 +1,13 @@
+[testharness]
+2d.type.delete.html
+2d.voidreturn.html
+2d.coordinatespace.html
+2d.missingargs.html
+
+[reftest]
+
+[manual]
+
+[helper]
+2d.coordinatespace.png
+

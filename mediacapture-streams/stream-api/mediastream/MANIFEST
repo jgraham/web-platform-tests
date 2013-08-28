@@ -1,0 +1,17 @@
+[testharness]
+mediastream-addtrack.html
+video.html
+mediastream-removetrack.html
+stream-ended.html
+mediastream-gettrackid.html
+mediastream-id.html
+mediastream-idl.html
+audio.html
+mediastream-finished-add.html
+
+[reftest]
+
+[manual]
+
+[helper]
+

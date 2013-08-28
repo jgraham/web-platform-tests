@@ -1,0 +1,13 @@
+[testharness]
+window-prototype-chain.html
+window-named-properties.html
+window-indexed-properties-strict.html
+window-properties.html
+window-indexed-properties.html
+
+[reftest]
+
+[manual]
+
+[helper]
+

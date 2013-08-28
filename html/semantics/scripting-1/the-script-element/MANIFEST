@@ -1,0 +1,17 @@
+[testharness]
+script-noembed-noframes-iframe.xhtml
+script-language-type.html
+script-languages-01.html
+script-for-onload.html
+script-languages-02.html
+script-onload-string.html
+script-for-event.html
+script-for-event.xhtml
+
+[reftest]
+
+[manual]
+
+[helper]
+contains.json
+

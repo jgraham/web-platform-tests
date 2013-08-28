@@ -1,0 +1,11 @@
+[testharness]
+draggable.html
+events.html
+
+[reftest]
+
+[manual]
+
+[helper]
+specials.html
+

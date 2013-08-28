@@ -1,0 +1,15 @@
+[testharness]
+idlharness.html
+
+[reftest]
+
+[manual]
+
+[helper]
+test_attributes_exist.html
+test_minimize.html
+test_default_view.html
+test_child_document.html
+test_read_only.html
+test_tab_state_change.html
+

@@ -1,0 +1,10 @@
+[testharness]
+location-stringifier.html
+
+[reftest]
+
+[manual]
+
+[helper]
+contains.json
+

@@ -1,0 +1,16 @@
+[testharness]
+
+[reftest]
+
+[manual]
+
+[helper]
+preload.ogv
+common.py
+preload.mp4
+common.js
+poster.png
+range-request.php
+tpl2tc.py
+preload.webm
+

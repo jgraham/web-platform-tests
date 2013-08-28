@@ -1,0 +1,15 @@
+[testharness]
+canPlayType_supported_but_no_codecs_parameter_1.html
+canPlayType_application_octet_stream.html
+canPlayType_bogus_type.html
+canPlayType_supported_but_no_codecs_parameter_2.html
+canPlayType_application_octet_stream_with_codecs_2.html
+canPlayType_method_exists.html
+canPlayType_application_octet_stream_with_codecs_1.html
+
+[reftest]
+
+[manual]
+
+[helper]
+

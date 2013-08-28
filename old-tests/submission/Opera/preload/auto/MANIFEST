@@ -1,0 +1,14 @@
+[testharness]
+preload-auto-to-none-event-order-dataurl.html
+preload-auto-to-metadata-event-order-dataurl.html
+preload-auto-event-order-dataurl.html
+
+[reftest]
+
+[manual]
+
+[helper]
+preload-auto-to-metadata-event-order.tpl
+preload-auto-event-order.tpl
+preload-auto-to-none-event-order.tpl
+

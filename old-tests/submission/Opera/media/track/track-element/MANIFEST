@@ -1,0 +1,10 @@
+[testharness]
+src-clear-cues.html
+cloneNode.html
+
+[reftest]
+
+[manual]
+
+[helper]
+

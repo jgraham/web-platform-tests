@@ -1,0 +1,12 @@
+[testharness]
+propagate-to-window-onerror.html
+not-handled.html
+exception-in-onerror.html
+handled.html
+
+[reftest]
+
+[manual]
+
+[helper]
+

@@ -1,0 +1,17 @@
+[testharness]
+insertRow-method-02.html
+table-rows.html
+border.html
+table-insertRow.html
+insertRow-method-01.html
+createTBody.html
+caption-methods.html
+tBodies.html
+
+[reftest]
+
+[manual]
+
+[helper]
+contains.json
+

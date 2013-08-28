@@ -1,0 +1,9 @@
+[testharness]
+ClickFakeEvent.nondocument.html
+
+[reftest]
+
+[manual]
+
+[helper]
+

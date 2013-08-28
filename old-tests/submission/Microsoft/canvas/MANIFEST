@@ -1,0 +1,28 @@
+[testharness]
+canvas_pixelManipulation_imagedata_002.htm
+canvas_colorsandstyles_addcolorstop_001.htm
+canvas_colorsAndStyles_createPattern_001.htm
+canvas_pixelmanipulation_imagedata_001.htm
+canvas_complexshapes_ispointInpath_001.htm
+canvas_canvasElement_001.htm
+
+[reftest]
+canvas_images_drawImage_001.htm == canvas_images_drawImage_001-ref.htm
+canvas_complexshapes_beziercurveto_001.htm == canvas_complexshapes_beziercurveto_001-ref.htm
+canvas_complexshapes_arcto_001.htm == canvas_complexshapes_arcto_001-ref.htm
+canvas_transformations_scale_001.htm == canvas_transformations_scale_001-ref.htm
+canvas_linestyles_linecap_001.htm == canvas_linestyles_linecap_001-ref.htm
+canvas_compositing_globalcompositeoperation_001.htm == canvas_compositing_globalcompositeoperation_001-ref.htm
+canvas_state_restore_001.htm == canvas_state_restore_001-ref.htm
+
+[manual]
+
+[helper]
+canvas_text_font_002.htm
+canvas_transformations_scale_001-ref.htm
+canvas_complexshapes_beziercurveto_001-ref.htm
+canvas_linestyles_linecap_001-ref.htm
+canvas_text_fillText_001.htm
+canvas_compositing_globalcompositeoperation_001-ref.htm
+canvas_shadows_002.htm
+

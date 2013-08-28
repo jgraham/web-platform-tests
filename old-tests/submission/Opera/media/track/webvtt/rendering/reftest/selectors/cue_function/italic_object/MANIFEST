@@ -1,0 +1,36 @@
+[testharness]
+
+[reftest]
+italic_animation_with_timestamp.html == italic_animation_with_timestamp-ref.html
+italic_transition_with_timestamp.html == italic_transition_with_timestamp-ref.html
+italic_background_shorthand.html == italic_background_shorthand-ref.html
+italic_white-space_normal_wrapped.html == italic_white-space_normal_wrapped-ref.html
+italic_timestamp_past.html == italic_timestamp_past-ref.html
+italic_white-space_pre_wrapped.html == italic_white-space_pre_wrapped-ref.html
+italic_with_class_object_specific_selector.html == italic_with_class_object_specific_selector-ref.html
+italic_color.html == italic_color-ref.html
+italic_white-space_pre-line_wrapped.html == italic_white-space_pre-line_wrapped-ref.html
+italic_outline_properties.html == italic_outline_properties-ref.html
+italic_namespace.html == italic_namespace-ref.html
+italic_background_properties.html == italic_background_properties-ref.html
+italic_timestamp_future.html == italic_timestamp_future-ref.html
+italic_text-shadow.html == italic_text-shadow-ref.html
+italic_font_shorthand.html == italic_font_shorthand-ref.html
+italic_font_properties.html == italic_font_properties-ref.html
+italic_text-decoration_line-through.html == italic_text-decoration_line-through-ref.html
+italic_with_class.html == italic_with_class-ref.html
+italic_white-space_pre-wrap_wrapped.html == italic_white-space_pre-wrap_wrapped-ref.html
+italic_white-space_nowrap.html == italic_white-space_nowrap-ref.html
+italic_outline_shorthand.html == italic_outline_shorthand-ref.html
+
+[manual]
+
+[helper]
+italic_transition_with_timestamp-ref.html
+italic_outline_shorthand-ref.html
+italic_background_properties-ref.html
+italic_timestamp_future-ref.html
+italic_white-space_pre-wrap_wrapped-ref.html
+italic_text-decoration_line-through-ref.html
+italic_white-space_nowrap-ref.html
+

@@ -1,0 +1,12 @@
+[testharness]
+currentSrc_property_exists.html
+currentSrc_empty_if_no_src.html
+currentSrc_nonempty_after_setting_src.html
+currentSrc_nonempty_after_adding_source_child.html
+
+[reftest]
+
+[manual]
+
+[helper]
+
