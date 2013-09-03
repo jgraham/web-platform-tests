@@ -14,12 +14,13 @@ except ImportError:
 
 import html5lib
 
+manifest_name = "MANIFEST.json"
 exclude_php_hack = True
 ref_suffixes = ["_ref", "-ref"]
 blacklist = ["/", "/tools/", "/resources/", "/common/"]
 
 logging.basicConfig()
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("Web platform tests")
 logger.setLevel(logging.DEBUG)
 
 class ManifestItem(object):
@@ -28,7 +29,7 @@ class ManifestItem(object):
     def __init__(self, path, url):
         self.path = path
         self.url = url
-        self.extras = {}
+        self.extra = {}
 
     def _key(self):
         return self.item_type, self.url
@@ -41,9 +42,11 @@ class ManifestItem(object):
     def __hash__(self):
         return hash(self._key())
 
-    def to_json(self):
+    def to_json(self, include_extra=False):
         rv = {"path":self.path,
               "url":self.url}
+        if include_extra:
+            rv["extra"] = self.extra
         return rv
 
     @classmethod
@@ -58,9 +61,8 @@ class TestharnessTest(ManifestItem):
         ManifestItem.__init__(self, path, url)
         self.timeout = timeout
 
-    def to_json(self):
-        rv = {"path":self.path,
-              "url":self.url}
+    def to_json(self, include_extra=False):
+        rv = ManifestItem.to_json(include_extra)
         if self.timeout:
             rv["timeout"] = self.timeout
         return rv
@@ -87,11 +89,10 @@ class RefTest(ManifestItem):
     def _key(self):
         return self.item_type, self.url, self.ref_type, self.ref_url
 
-    def to_json(self):
-        rv = {"path":self.path,
-              "url":self.url,
-              "ref_type": self.ref_type,
-              "ref_url": self.ref_url}
+    def to_json(self, include_extra=False):
+        rv = ManifestItem.to_json(include_extra)
+        rv.update({"ref_type": self.ref_type,
+                   "ref_url": self.ref_url})
         if self.timeout:
             rv["timeout"] = self.timeout
         return rv
@@ -308,11 +309,18 @@ def abs_path(path):
     return os.path.abspath(path)
 
 
-def git(cmd, *args):
-    proc = subprocess.Popen(["git", cmd] + list(args), stdout=subprocess.PIPE)
-    stdout, stderr = proc.communicate()
-    return stdout
+def get_git_func(repo_base):
+    def git(cmd, *args):
+        proc = subprocess.Popen(["git", cmd] + list(args), stdout=subprocess.PIPE, cwd=repo_base)
+        stdout, stderr = proc.communicate()
+        return stdout
+    return git
 
+
+def setup_git(repo_path):
+    assert os.path.exists(os.path.join(repo_path, ".git"))
+    global git
+    git = get_git_func(repo_path)
 
 def get_repo_paths():
     data = git("ls-tree", "--name-only", "--full-tree", "-r", "HEAD")
@@ -354,6 +362,8 @@ def sync_urls(manifest, updated_files):
 
 
 def sync_local_changes(manifest, local_changes):
+    #If we just refuse to write the manifest in the face of local changes
+    #this can be simplified somewhat
     if local_changes:
         logger.info("Working directory not clean, adding local changes")
     prev_local_changes = manifest.local_changes
@@ -387,14 +397,16 @@ def get_repo_root():
 def get_current_ref():
     return git("rev-parse", "HEAD").strip()
 
-
-def update_manifest(path):
-    manifest_path = os.path.join(path, "MANIFEST.json")
-    if os.path.exists(manifest_path):
+def load(manifest_path)
+    manifest_path = os.path.join(out_path, manifest_name)
+    try:
         with open(manifest_path) as f:
             manifest = Manifest.from_json(json.load(f))
-    else:
+    except IOError:
         manifest = Manifest(None)
+    return manifest
+
+def manifest(manifest):
     committed_changes = get_committed_changes(manifest.ref)
     local_changes = get_local_changes()
 
@@ -404,8 +416,19 @@ def update_manifest(path):
     manifest.ref = get_current_ref()
     manifest.local_changes = local_changes
 
+def write(manifest):
     with open(manifest_path, "w") as f:
         json.dump(manifest.to_json(), f, indent=2)
 
+def update_manifest(repo_path, out_path):
+    setup_git(repo_path)
+    manifest = load_manifest(path)
+    update_manifest(manifest)
+    if not manifest.local_changes:
+        write_manifest(manifest)
+    else:
+        logging.info("Not writing updated manifest because of local changes")
+
 if __name__ == "__main__":
-    update_manifest(get_repo_root())
+    out_dir = os.path.abspath(sys.argv[1] if len(sys.argv) > 1 else ".")
+    update_manifest(get_repo_root(), out_dir)
