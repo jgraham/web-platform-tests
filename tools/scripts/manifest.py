@@ -29,7 +29,6 @@ class ManifestItem(object):
     def __init__(self, path, url):
         self.path = path
         self.url = url
-        self.extra = {}
 
     def _key(self):
         return self.item_type, self.url
@@ -42,11 +41,9 @@ class ManifestItem(object):
     def __hash__(self):
         return hash(self._key())
 
-    def to_json(self, include_extra=False):
+    def to_json(self):
         rv = {"path":self.path,
               "url":self.url}
-        if include_extra:
-            rv["extra"] = self.extra
         return rv
 
     @classmethod
@@ -61,8 +58,8 @@ class TestharnessTest(ManifestItem):
         ManifestItem.__init__(self, path, url)
         self.timeout = timeout
 
-    def to_json(self, include_extra=False):
-        rv = ManifestItem.to_json(include_extra)
+    def to_json(self):
+        rv = ManifestItem.to_json()
         if self.timeout:
             rv["timeout"] = self.timeout
         return rv
@@ -89,8 +86,8 @@ class RefTest(ManifestItem):
     def _key(self):
         return self.item_type, self.url, self.ref_type, self.ref_url
 
-    def to_json(self, include_extra=False):
-        rv = ManifestItem.to_json(include_extra)
+    def to_json(self):
+        rv = ManifestItem.to_json()
         rv.update({"ref_type": self.ref_type,
                    "ref_url": self.ref_url})
         if self.timeout:
@@ -329,8 +326,10 @@ def get_repo_paths():
 
 def get_committed_changes(base_ref):
     if base_ref is None:
+        logger.debug("Adding all changesets to the manifest")
         return [("A", item) for item in get_repo_paths()]
     else:
+        logger.debug("Updating the manifest from %s to %s" % (base_ref, get_current_ref()))
         data  = git("diff", "--name-status", base_ref)
         return [line.split("\t", 1) for line in data.split("\n") if line]
 
@@ -397,16 +396,19 @@ def get_repo_root():
 def get_current_ref():
     return git("rev-parse", "HEAD").strip()
 
-def load(manifest_path)
-    manifest_path = os.path.join(out_path, manifest_name)
+def load(manifest_path):
+    if os.path.exists(manifest_path):
+        logger.debug("Opening manifest at %s" % manifest_path)
+    else:
+        logger.debug("Creating new manifest at %s" % manifest_path)
     try:
         with open(manifest_path) as f:
             manifest = Manifest.from_json(json.load(f))
-    except IOError:
+    except IOError as e:
         manifest = Manifest(None)
     return manifest
 
-def manifest(manifest):
+def update(manifest):
     committed_changes = get_committed_changes(manifest.ref)
     local_changes = get_local_changes()
 
@@ -423,7 +425,7 @@ def write(manifest):
 def update_manifest(repo_path, out_path):
     setup_git(repo_path)
     manifest = load_manifest(path)
-    update_manifest(manifest)
+    update(manifest)
     if not manifest.local_changes:
         write_manifest(manifest)
     else:
