@@ -122,7 +122,7 @@
 
  // For TextDecoder tests
  var buffer = new ArrayBuffer(255),
-     view = new Uint8Array(buffer)
+     view = new Uint8Array(buffer) //ES requires "new" here
  for(var i = 0, l = view.byteLength; i < l; i++) {
    view[i] = i
  }
