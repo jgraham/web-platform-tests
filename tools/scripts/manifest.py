@@ -320,6 +320,7 @@ class Manifest(object):
         self.local_changes = LocalChanges(self)
 
         local_paths = set()
+
         for rel_path, status in local_changes.iteritems():
             local_paths.add(rel_path)
 
@@ -756,6 +757,9 @@ class NoVCSTree(TestTree):
     def committed_changes(self, base_rev=None):
         return None
 
+    def committed_changes(self, base_rev=None):
+        return None
+
 
 def load(manifest_path):
     if os.path.exists(manifest_path):
@@ -854,4 +858,9 @@ if __name__ == "__main__":
     if opts.path is None:
         opts.path = os.path.join(opts.tests_root, "MANIFEST.json")
 
-    update_from_cli(**vars(opts))
+    import pdb, traceback
+    try:
+        update_from_cli(**vars(opts))
+    except:
+        traceback.print_exc()
+        pdb.post_mortem()
