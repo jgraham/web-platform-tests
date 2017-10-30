@@ -78,11 +78,11 @@ def download_manifest(manifest_path, commits_func, url_func, force=False):
     try:
         resp = urllib2.urlopen(url)
     except Exception:
-        logger.warning("Downloading pregenreated manifest failed")
+        logger.warning("Downloading pregenerated manifest failed")
         return False
 
     if resp.code != 200:
-        logger.warning("Downloading pregenreated manifest failed; got HTTP status %d" %
+        logger.warning("Downloading pregenerated manifest failed; got HTTP status %d" %
                        resp.code)
         return False
 
@@ -117,8 +117,8 @@ def create_parser():
 
 
 def download_from_github(path, tests_root, force=False):
-    download_manifest(path, lambda: git_commits(tests_root), github_url,
-                      force=force)
+    return download_manifest(path, lambda: git_commits(tests_root), github_url,
+                             force=force)
 
 
 def run(**kwargs):
@@ -126,4 +126,5 @@ def run(**kwargs):
         path = os.path.join(kwargs["tests_root"], "MANIFEST.json")
     else:
         path = kwargs["path"]
-    download_from_github(path, kwargs["tests_root"], kwargs["force"])
+    success = download_from_github(path, kwargs["tests_root"], kwargs["force"])
+    return 0 if success else 1
