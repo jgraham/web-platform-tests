@@ -50,8 +50,13 @@ def get_pr(repo, owner, rev):
 def tag(repo, owner, sha, tag):
     data = json.dumps({"refs": "refs/tags/%s" % tag,
                        "sha": sha})
-    resp = urllib2.urlopen("https://api.github.com/repos/%s/%s/git/refs" % (repo, owner),
-                           data=data)
+    try:
+        resp = urllib2.urlopen("https://%s@api.github.com/repos/%s/%s/git/refs" %
+                               (os.environ["GH_TOKEN"],repo, owner),
+                               data=data)
+    except Exception as e:
+        logger.error("Tag creation failed:\n%s" % e)
+        return
 
     if resp.code != 201:
         logger.error("Got HTTP status %s" % resp.code)
@@ -62,10 +67,7 @@ def tag(repo, owner, sha, tag):
 def main():
     owner, repo = os.environ["TRAVIS_REPO_SLUG"].split("/", 1)
     if os.environ["TRAVIS_PULL_REQUEST"] != "false":
-        logger.info("Not tagging master for PR")
-        return
-    if os.environ["TRAVIS_PULL_REQUEST"] != "false":
-        logger.info("Not tagging master for PR")
+        logger.info("Not tagging for PR")
         return
     if os.environ["TRAVIS_BRANCH"] != "master":
         logger.info("Not tagging for non-master branch")
