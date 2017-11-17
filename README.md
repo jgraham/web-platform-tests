@@ -17,6 +17,8 @@ editors and implementors.
 Setting Up the Repo
 ===================
 
+[Change in mozilla repo]
+
 Clone or otherwise get https://github.com/w3c/web-platform-tests.
 
 Running the Tests
