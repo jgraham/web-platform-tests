@@ -188,4 +188,8 @@ EventPrototypeRemoved.forEach(name => {
     assert_equals((new Event("test"))[name], undefined)
   }, "Event.prototype should not have this property: " + name)
 })
+
+test(() => {assert_true(true), "New test that passes"});
+
+test(() => {assert_true(false), "New test that fails"});
 </script>
