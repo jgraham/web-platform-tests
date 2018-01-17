@@ -10,7 +10,7 @@ tasks:
           - master
     payload:
       maxRunTime: 3600
-      image: python
+      image: taskcluster/desktop-test
       command:
         - /bin/bash
         - '--login'
