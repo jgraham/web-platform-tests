@@ -40,8 +40,13 @@ class Virtualenv(object):
     def activate(self):
         path = os.path.join(self.bin_path, "activate_this.py")
         logger.info("Activating virtualenv %s" % path)
+        old_sys_path = sys.path[:]
+        logger.info(sys.path)
         execfile(path, {"__file__": path})
         logger.info(sys.path)
+        for item in sys.path:
+            if item not in old_sys_path:
+                logger.info(item)
 
     def start(self):
         if not self.exists:
