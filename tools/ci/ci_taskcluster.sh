@@ -3,6 +3,8 @@
 set -xe
 
 # To make sure we have all the deps installed
+apt update
+apt list
 apt install firefox
 
 pip -q install virtualenv
