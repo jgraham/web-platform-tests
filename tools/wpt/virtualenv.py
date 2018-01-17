@@ -7,6 +7,7 @@ from tools.wpt.utils import call
 
 logger = logging.getLogger(__name__)
 
+
 class Virtualenv(object):
     def __init__(self, path):
         self.path = path
@@ -38,7 +39,9 @@ class Virtualenv(object):
 
     def activate(self):
         path = os.path.join(self.bin_path, "activate_this.py")
+        logger.info("Activating virtualenv %s" % path)
         execfile(path, {"__file__": path})
+        logger.info(sys.path)
 
     def start(self):
         if not self.exists:
