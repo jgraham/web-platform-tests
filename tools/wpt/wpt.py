@@ -90,7 +90,7 @@ def setup_virtualenv(path, props):
 
 
 def main(prog=None, argv=None):
-    logging.basicConfig(level=logging.INFO)
+    logging.basicConfig(level=logging.DEBUG)
 
     if prog is None:
         prog = sys.argv[0]
