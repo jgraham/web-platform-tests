@@ -61,7 +61,7 @@ COPY .bashrc /home/test/.bashrc
 # Remove information on how to use sudo on login
 RUN sudo echo ""
 
-RUN git clone https://github.com/w3c/web-platform-tests.git
+RUN git clone --depth=1 https://github.com/w3c/web-platform-tests.git
 
 ENTRYPOINT ["/usr/bin/start.sh"]
 

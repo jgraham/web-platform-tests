@@ -31,6 +31,5 @@ if ! sudo dpkg --install $deb_archive; then
 fi
 
 if [ "$1" == "--shell" ]; then
-do
     /bin/bash --login
 fi
