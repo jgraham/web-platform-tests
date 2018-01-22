@@ -10,14 +10,15 @@ tasks:
           - master
     payload:
       maxRunTime: 3600
-      image: taskcluster/ubuntu1604-test:0.1.3
+      image: harjgam/web-platform-tests:0.1
       command:
         - /bin/bash
         - '--login'
         - '-c'
         - >-
-          git clone {{event.head.repo.url}} repo && cd repo && git config
-          advice.detachedHead false && git checkout {{event.head.sha}} &&
+          /usr/bin/shart.sh &&
+          cd /home/test/web-platform-tests &&
+          git checkout {{event.head.sha}} &&
           ./tools/ci/ci_taskcluster.sh firefox testharness 1 12
     metadata:
       name: 'firefox-nightly-testharness-1'
