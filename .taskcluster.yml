@@ -16,7 +16,7 @@ tasks:
         - '--login'
         - '-c'
         - >-
-          /usr/bin/start.sh &&
+          ~/start.sh &&
           cd /home/test/web-platform-tests &&
           git checkout {{event.head.sha}} &&
           ./tools/ci/ci_taskcluster.sh firefox testharness 1 12
