@@ -21,13 +21,20 @@ RUN apt-get -qqy update \
     xvfb
 
 # Installing just the deps of firefox and chrome is moderately tricky, so
-# just install the default versions of them
-# TODO: just add the Google Chrome repository here
+# just install the default versions of them, and some extra deps we happen
+# to know that chrome requires
 
 RUN apt-get -qqy install \
     firefox \
     chromium-browser \
-    libnss3
+    libnss3 \
+    fonts-liberation \
+    indicator-application \
+    libappindicator1 \
+    libappindicator3-1 \
+    libdbusmenu-gtk3-4 \
+    libindicator3-7 \
+    libindicator7
 
 RUN pip install --upgrade pip
 RUN pip install virtualenv
@@ -50,15 +57,19 @@ ENV DISPLAY :99.0
 
 ENV DBUS_SESSION_BUS_ADDRESS=/dev/null
 
-COPY start.sh /usr/bin/start.sh
-
 USER test
 
 WORKDIR /home/test
 
 COPY .bashrc /home/test/.bashrc
 
+COPY start.sh /home/test/start.sh
+
 # Remove information on how to use sudo on login
 RUN sudo echo ""
 
 RUN git clone --depth=1 https://github.com/w3c/web-platform-tests.git
+
+RUN mkdir -p /home/test/.fonts && \
+    cp web-platform-tests/fonts/Ahem.ttf ~/.fonts && \
+    fc-cache -f -v

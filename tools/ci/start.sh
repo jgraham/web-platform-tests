@@ -18,18 +18,10 @@ git pull
 deb_archive=google-chrome-unstable_current_amd64.deb
 wget https://dl.google.com/linux/direct/$deb_archive
 
-if sudo update-alternatives --list google-chrome; then
-    sudo update-alternatives --remove-all google-chrome
-fi
-
 # Installation will fail in cases where the package has unmet dependencies.
 # When this occurs, attempt to use the system package manager to fetch the
 # required packages and retry.
 if ! sudo dpkg --install $deb_archive; then
     sudo apt-get -y install --fix-broken
     sudo dpkg --install $deb_archive
-fi
-
-if [ "$1" == "--shell" ]; then
-    /bin/bash --login
 fi

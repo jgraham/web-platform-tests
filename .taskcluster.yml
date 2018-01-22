@@ -10,18 +10,18 @@ tasks:
           - master
     payload:
       maxRunTime: 3600
-      image: harjgam/web-platform-tests:0.2
+      image: harjgam/web-platform-tests:0.4
       command:
         - /bin/bash
         - '--login'
         - '-c'
         - >-
-          /usr/bin/shart.sh &&
+          /usr/bin/start.sh &&
           cd /home/test/web-platform-tests &&
           git checkout {{event.head.sha}} &&
           ./tools/ci/ci_taskcluster.sh firefox testharness 1 12
     metadata:
-      name: 'firefox-nightly-testharness-1'
+      name: 'wpt-firefox-nightly-testharness-1'
       description: ''
       owner: '{{ event.head.user.email }}'
       source: '{{ event.head.repo.url }}'
