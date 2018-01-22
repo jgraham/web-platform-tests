@@ -10,7 +10,7 @@ tasks:
           - master
     payload:
       maxRunTime: 3600
-      image: harjgam/web-platform-tests:0.1
+      image: harjgam/web-platform-tests:0.2
       command:
         - /bin/bash
         - '--login'
