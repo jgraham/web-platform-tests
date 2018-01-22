@@ -62,7 +62,3 @@ COPY .bashrc /home/test/.bashrc
 RUN sudo echo ""
 
 RUN git clone --depth=1 https://github.com/w3c/web-platform-tests.git
-
-ENTRYPOINT ["/usr/bin/start.sh"]
-
-CMD ["--shell"]
