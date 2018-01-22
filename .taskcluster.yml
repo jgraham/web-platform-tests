@@ -18,6 +18,8 @@ tasks:
         - >-
           ~/start.sh &&
           cd /home/test/web-platform-tests &&
+          git fetch {{event.head.repo.url}} &&
+          git config advice.detachedHead false &&
           git checkout {{event.head.sha}} &&
           ./tools/ci/ci_taskcluster.sh firefox testharness 1 12
     metadata:
