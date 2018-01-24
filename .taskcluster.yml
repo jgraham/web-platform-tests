@@ -10,7 +10,7 @@ tasks:
           - master
     payload:
       maxRunTime: 3600
-      image: harjgam/web-platform-tests:0.4
+      image: harjgam/web-platform-tests:0.5
       command:
         - /bin/bash
         - '--login'
@@ -24,6 +24,37 @@ tasks:
           ./tools/ci/ci_taskcluster.sh firefox testharness 1 12
     metadata:
       name: 'wpt-firefox-nightly-testharness-1'
+      description: ''
+      owner: '{{ event.head.user.email }}'
+      source: '{{ event.head.repo.url }}'
+    artifacts:
+      public/results:
+        path: /home/test/artifacts
+        type: directory
+  - provisionerId: '{{ taskcluster.docker.provisionerId }}'
+    workerType: '{{ taskcluster.docker.workerType }}'
+    extra:
+      github:
+        events:
+          - push
+        branches:
+          - master
+    payload:
+      maxRunTime: 3600
+      image: harjgam/web-platform-tests:0.5
+      command:
+        - /bin/bash
+        - '--login'
+        - '-c'
+        - >-
+          ~/start.sh &&
+          cd /home/test/web-platform-tests &&
+          git fetch {{event.head.repo.url}} &&
+          git config advice.detachedHead false &&
+          git checkout {{event.head.sha}} &&
+          ./tools/ci/ci_taskcluster.sh chrome testharness 1 12
+    metadata:
+      name: 'wpt-chrome-dev-testharness-1'
       description: ''
       owner: '{{ event.head.user.email }}'
       source: '{{ event.head.repo.url }}'

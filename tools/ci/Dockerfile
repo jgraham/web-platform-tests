@@ -9,6 +9,7 @@ RUN apt-get -qqy update \
   && apt-get -qqy install \
     bzip2 \
     ca-certificates \
+    dbus-x11 \
     git \
     locales \
     pulseaudio \
@@ -27,7 +28,7 @@ RUN apt-get -qqy update \
 RUN apt-get -qqy install \
     firefox \
     chromium-browser \
-    libnss3 \
+    libnss3-tools \
     fonts-liberation \
     indicator-application \
     libappindicator1 \
@@ -55,8 +56,6 @@ ENV SCREEN_HEIGHT 1024
 ENV SCREEN_DEPTH 24
 ENV DISPLAY :99.0
 
-ENV DBUS_SESSION_BUS_ADDRESS=/dev/null
-
 USER test
 
 WORKDIR /home/test
@@ -73,3 +72,5 @@ RUN git clone --depth=1 https://github.com/w3c/web-platform-tests.git
 RUN mkdir -p /home/test/.fonts && \
     cp web-platform-tests/fonts/Ahem.ttf ~/.fonts && \
     fc-cache -f -v
+
+RUN mkdir -p /home/test/artifacts

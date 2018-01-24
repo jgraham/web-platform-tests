@@ -1,7 +1,5 @@
 #!/bin/bash
 
-export GEOMETRY="$SCREEN_WIDTH""x""$SCREEN_HEIGHT""x""$SCREEN_DEPTH"
-
 sudo sh -c 'echo "
 127.0.0.1	web-platform.test
 127.0.0.1	www.web-platform.test
@@ -12,7 +10,7 @@ sudo sh -c 'echo "
 0.0.0.0	nonexistent-origin.web-platform.test" >> /etc/hosts'
 
 cd web-platform-tests
-git pull
+git pull --depth=1
 
 # Install Chome unstable
 deb_archive=google-chrome-unstable_current_amd64.deb
@@ -25,3 +23,5 @@ if ! sudo dpkg --install $deb_archive; then
     sudo apt-get -y install --fix-broken
     sudo dpkg --install $deb_archive
 fi
+
+sudo Xvfb $DISPLAY -screen 0 ${SCREEN_WIDTH}x${SCREEN_HEIGHT}x${SCREEN_DEPTH} &
