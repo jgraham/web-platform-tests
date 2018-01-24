@@ -27,10 +27,6 @@ tasks:
       description: ''
       owner: '{{ event.head.user.email }}'
       source: '{{ event.head.repo.url }}'
-    artifacts:
-      public/results:
-        path: /home/test/artifacts
-        type: directory
   - provisionerId: '{{ taskcluster.docker.provisionerId }}'
     workerType: '{{ taskcluster.docker.workerType }}'
     extra:
