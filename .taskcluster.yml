@@ -22,6 +22,10 @@ tasks:
           git config advice.detachedHead false &&
           git checkout {{event.head.sha}} &&
           ./tools/ci/ci_taskcluster.sh firefox testharness 1 12
+      artifacts:
+        public/results:
+          path: /home/test/artifacts
+          type: directory
     metadata:
       name: 'wpt-firefox-nightly-testharness-1'
       description: ''
