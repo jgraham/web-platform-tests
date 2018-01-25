@@ -4,6 +4,114 @@ tasks:
     github:
       branches: [master]
       events: [push]
+  metadata: {description: '', name: wpt-chrome-dev-reftest-1, owner: '{{ event.head.user.email
+      }}', source: '{{ event.head.repo.url }}'}
+  payload:
+    artifacts:
+      public/results: {path: /home/test/artifacts, type: directory}
+    command: [/bin/bash, --login, -c, ">-\n            ~/start.sh &&\n           \
+        \ cd /home/test/web-platform-tests &&\n            git fetch {{event.head.repo.url}}\
+        \ &&\n            git config advice.detachedHead false &&\n            git\
+        \ checkout {{event.head.sha}} &&\n            ./tools/ci/ci_taskcluster.sh\
+        \ chrome reftest 1 6"]
+    image: harjgam/web-platform-tests:0.5
+    maxRunTime: 3600
+  provisionerId: '{{ taskcluster.docker.provisionerId }}'
+  workerType: '{{ taskcluster.docker.workerType }}'
+- extra:
+    github:
+      branches: [master]
+      events: [push]
+  metadata: {description: '', name: wpt-chrome-dev-reftest-2, owner: '{{ event.head.user.email
+      }}', source: '{{ event.head.repo.url }}'}
+  payload:
+    artifacts:
+      public/results: {path: /home/test/artifacts, type: directory}
+    command: [/bin/bash, --login, -c, ">-\n            ~/start.sh &&\n           \
+        \ cd /home/test/web-platform-tests &&\n            git fetch {{event.head.repo.url}}\
+        \ &&\n            git config advice.detachedHead false &&\n            git\
+        \ checkout {{event.head.sha}} &&\n            ./tools/ci/ci_taskcluster.sh\
+        \ chrome reftest 2 6"]
+    image: harjgam/web-platform-tests:0.5
+    maxRunTime: 3600
+  provisionerId: '{{ taskcluster.docker.provisionerId }}'
+  workerType: '{{ taskcluster.docker.workerType }}'
+- extra:
+    github:
+      branches: [master]
+      events: [push]
+  metadata: {description: '', name: wpt-chrome-dev-reftest-3, owner: '{{ event.head.user.email
+      }}', source: '{{ event.head.repo.url }}'}
+  payload:
+    artifacts:
+      public/results: {path: /home/test/artifacts, type: directory}
+    command: [/bin/bash, --login, -c, ">-\n            ~/start.sh &&\n           \
+        \ cd /home/test/web-platform-tests &&\n            git fetch {{event.head.repo.url}}\
+        \ &&\n            git config advice.detachedHead false &&\n            git\
+        \ checkout {{event.head.sha}} &&\n            ./tools/ci/ci_taskcluster.sh\
+        \ chrome reftest 3 6"]
+    image: harjgam/web-platform-tests:0.5
+    maxRunTime: 3600
+  provisionerId: '{{ taskcluster.docker.provisionerId }}'
+  workerType: '{{ taskcluster.docker.workerType }}'
+- extra:
+    github:
+      branches: [master]
+      events: [push]
+  metadata: {description: '', name: wpt-chrome-dev-reftest-4, owner: '{{ event.head.user.email
+      }}', source: '{{ event.head.repo.url }}'}
+  payload:
+    artifacts:
+      public/results: {path: /home/test/artifacts, type: directory}
+    command: [/bin/bash, --login, -c, ">-\n            ~/start.sh &&\n           \
+        \ cd /home/test/web-platform-tests &&\n            git fetch {{event.head.repo.url}}\
+        \ &&\n            git config advice.detachedHead false &&\n            git\
+        \ checkout {{event.head.sha}} &&\n            ./tools/ci/ci_taskcluster.sh\
+        \ chrome reftest 4 6"]
+    image: harjgam/web-platform-tests:0.5
+    maxRunTime: 3600
+  provisionerId: '{{ taskcluster.docker.provisionerId }}'
+  workerType: '{{ taskcluster.docker.workerType }}'
+- extra:
+    github:
+      branches: [master]
+      events: [push]
+  metadata: {description: '', name: wpt-chrome-dev-reftest-5, owner: '{{ event.head.user.email
+      }}', source: '{{ event.head.repo.url }}'}
+  payload:
+    artifacts:
+      public/results: {path: /home/test/artifacts, type: directory}
+    command: [/bin/bash, --login, -c, ">-\n            ~/start.sh &&\n           \
+        \ cd /home/test/web-platform-tests &&\n            git fetch {{event.head.repo.url}}\
+        \ &&\n            git config advice.detachedHead false &&\n            git\
+        \ checkout {{event.head.sha}} &&\n            ./tools/ci/ci_taskcluster.sh\
+        \ chrome reftest 5 6"]
+    image: harjgam/web-platform-tests:0.5
+    maxRunTime: 3600
+  provisionerId: '{{ taskcluster.docker.provisionerId }}'
+  workerType: '{{ taskcluster.docker.workerType }}'
+- extra:
+    github:
+      branches: [master]
+      events: [push]
+  metadata: {description: '', name: wpt-chrome-dev-reftest-6, owner: '{{ event.head.user.email
+      }}', source: '{{ event.head.repo.url }}'}
+  payload:
+    artifacts:
+      public/results: {path: /home/test/artifacts, type: directory}
+    command: [/bin/bash, --login, -c, ">-\n            ~/start.sh &&\n           \
+        \ cd /home/test/web-platform-tests &&\n            git fetch {{event.head.repo.url}}\
+        \ &&\n            git config advice.detachedHead false &&\n            git\
+        \ checkout {{event.head.sha}} &&\n            ./tools/ci/ci_taskcluster.sh\
+        \ chrome reftest 6 6"]
+    image: harjgam/web-platform-tests:0.5
+    maxRunTime: 3600
+  provisionerId: '{{ taskcluster.docker.provisionerId }}'
+  workerType: '{{ taskcluster.docker.workerType }}'
+- extra:
+    github:
+      branches: [master]
+      events: [push]
   metadata: {description: '', name: wpt-chrome-dev-wdspec-1, owner: '{{ event.head.user.email
       }}', source: '{{ event.head.repo.url }}'}
   payload:
@@ -238,7 +346,7 @@ tasks:
     github:
       branches: [master]
       events: [push]
-  metadata: {description: '', name: wpt-chrome-dev-reftests-1, owner: '{{ event.head.user.email
+  metadata: {description: '', name: wpt-firefox-nightly-reftest-1, owner: '{{ event.head.user.email
       }}', source: '{{ event.head.repo.url }}'}
   payload:
     artifacts:
@@ -247,7 +355,7 @@ tasks:
         \ cd /home/test/web-platform-tests &&\n            git fetch {{event.head.repo.url}}\
         \ &&\n            git config advice.detachedHead false &&\n            git\
         \ checkout {{event.head.sha}} &&\n            ./tools/ci/ci_taskcluster.sh\
-        \ chrome reftests 1 6"]
+        \ firefox reftest 1 6"]
     image: harjgam/web-platform-tests:0.5
     maxRunTime: 3600
   provisionerId: '{{ taskcluster.docker.provisionerId }}'
@@ -256,7 +364,7 @@ tasks:
     github:
       branches: [master]
       events: [push]
-  metadata: {description: '', name: wpt-chrome-dev-reftests-2, owner: '{{ event.head.user.email
+  metadata: {description: '', name: wpt-firefox-nightly-reftest-2, owner: '{{ event.head.user.email
       }}', source: '{{ event.head.repo.url }}'}
   payload:
     artifacts:
@@ -265,7 +373,7 @@ tasks:
         \ cd /home/test/web-platform-tests &&\n            git fetch {{event.head.repo.url}}\
         \ &&\n            git config advice.detachedHead false &&\n            git\
         \ checkout {{event.head.sha}} &&\n            ./tools/ci/ci_taskcluster.sh\
-        \ chrome reftests 2 6"]
+        \ firefox reftest 2 6"]
     image: harjgam/web-platform-tests:0.5
     maxRunTime: 3600
   provisionerId: '{{ taskcluster.docker.provisionerId }}'
@@ -274,7 +382,7 @@ tasks:
     github:
       branches: [master]
       events: [push]
-  metadata: {description: '', name: wpt-chrome-dev-reftests-3, owner: '{{ event.head.user.email
+  metadata: {description: '', name: wpt-firefox-nightly-reftest-3, owner: '{{ event.head.user.email
       }}', source: '{{ event.head.repo.url }}'}
   payload:
     artifacts:
@@ -283,7 +391,7 @@ tasks:
         \ cd /home/test/web-platform-tests &&\n            git fetch {{event.head.repo.url}}\
         \ &&\n            git config advice.detachedHead false &&\n            git\
         \ checkout {{event.head.sha}} &&\n            ./tools/ci/ci_taskcluster.sh\
-        \ chrome reftests 3 6"]
+        \ firefox reftest 3 6"]
     image: harjgam/web-platform-tests:0.5
     maxRunTime: 3600
   provisionerId: '{{ taskcluster.docker.provisionerId }}'
@@ -292,7 +400,7 @@ tasks:
     github:
       branches: [master]
       events: [push]
-  metadata: {description: '', name: wpt-chrome-dev-reftests-4, owner: '{{ event.head.user.email
+  metadata: {description: '', name: wpt-firefox-nightly-reftest-4, owner: '{{ event.head.user.email
       }}', source: '{{ event.head.repo.url }}'}
   payload:
     artifacts:
@@ -301,7 +409,7 @@ tasks:
         \ cd /home/test/web-platform-tests &&\n            git fetch {{event.head.repo.url}}\
         \ &&\n            git config advice.detachedHead false &&\n            git\
         \ checkout {{event.head.sha}} &&\n            ./tools/ci/ci_taskcluster.sh\
-        \ chrome reftests 4 6"]
+        \ firefox reftest 4 6"]
     image: harjgam/web-platform-tests:0.5
     maxRunTime: 3600
   provisionerId: '{{ taskcluster.docker.provisionerId }}'
@@ -310,7 +418,7 @@ tasks:
     github:
       branches: [master]
       events: [push]
-  metadata: {description: '', name: wpt-chrome-dev-reftests-5, owner: '{{ event.head.user.email
+  metadata: {description: '', name: wpt-firefox-nightly-reftest-5, owner: '{{ event.head.user.email
       }}', source: '{{ event.head.repo.url }}'}
   payload:
     artifacts:
@@ -319,7 +427,7 @@ tasks:
         \ cd /home/test/web-platform-tests &&\n            git fetch {{event.head.repo.url}}\
         \ &&\n            git config advice.detachedHead false &&\n            git\
         \ checkout {{event.head.sha}} &&\n            ./tools/ci/ci_taskcluster.sh\
-        \ chrome reftests 5 6"]
+        \ firefox reftest 5 6"]
     image: harjgam/web-platform-tests:0.5
     maxRunTime: 3600
   provisionerId: '{{ taskcluster.docker.provisionerId }}'
@@ -328,7 +436,7 @@ tasks:
     github:
       branches: [master]
       events: [push]
-  metadata: {description: '', name: wpt-chrome-dev-reftests-6, owner: '{{ event.head.user.email
+  metadata: {description: '', name: wpt-firefox-nightly-reftest-6, owner: '{{ event.head.user.email
       }}', source: '{{ event.head.repo.url }}'}
   payload:
     artifacts:
@@ -337,7 +445,7 @@ tasks:
         \ cd /home/test/web-platform-tests &&\n            git fetch {{event.head.repo.url}}\
         \ &&\n            git config advice.detachedHead false &&\n            git\
         \ checkout {{event.head.sha}} &&\n            ./tools/ci/ci_taskcluster.sh\
-        \ chrome reftests 6 6"]
+        \ firefox reftest 6 6"]
     image: harjgam/web-platform-tests:0.5
     maxRunTime: 3600
   provisionerId: '{{ taskcluster.docker.provisionerId }}'
@@ -572,114 +680,6 @@ tasks:
         \ &&\n            git config advice.detachedHead false &&\n            git\
         \ checkout {{event.head.sha}} &&\n            ./tools/ci/ci_taskcluster.sh\
         \ firefox testharness 12 12"]
-    image: harjgam/web-platform-tests:0.5
-    maxRunTime: 3600
-  provisionerId: '{{ taskcluster.docker.provisionerId }}'
-  workerType: '{{ taskcluster.docker.workerType }}'
-- extra:
-    github:
-      branches: [master]
-      events: [push]
-  metadata: {description: '', name: wpt-firefox-nightly-reftests-1, owner: '{{ event.head.user.email
-      }}', source: '{{ event.head.repo.url }}'}
-  payload:
-    artifacts:
-      public/results: {path: /home/test/artifacts, type: directory}
-    command: [/bin/bash, --login, -c, ">-\n            ~/start.sh &&\n           \
-        \ cd /home/test/web-platform-tests &&\n            git fetch {{event.head.repo.url}}\
-        \ &&\n            git config advice.detachedHead false &&\n            git\
-        \ checkout {{event.head.sha}} &&\n            ./tools/ci/ci_taskcluster.sh\
-        \ firefox reftests 1 6"]
-    image: harjgam/web-platform-tests:0.5
-    maxRunTime: 3600
-  provisionerId: '{{ taskcluster.docker.provisionerId }}'
-  workerType: '{{ taskcluster.docker.workerType }}'
-- extra:
-    github:
-      branches: [master]
-      events: [push]
-  metadata: {description: '', name: wpt-firefox-nightly-reftests-2, owner: '{{ event.head.user.email
-      }}', source: '{{ event.head.repo.url }}'}
-  payload:
-    artifacts:
-      public/results: {path: /home/test/artifacts, type: directory}
-    command: [/bin/bash, --login, -c, ">-\n            ~/start.sh &&\n           \
-        \ cd /home/test/web-platform-tests &&\n            git fetch {{event.head.repo.url}}\
-        \ &&\n            git config advice.detachedHead false &&\n            git\
-        \ checkout {{event.head.sha}} &&\n            ./tools/ci/ci_taskcluster.sh\
-        \ firefox reftests 2 6"]
-    image: harjgam/web-platform-tests:0.5
-    maxRunTime: 3600
-  provisionerId: '{{ taskcluster.docker.provisionerId }}'
-  workerType: '{{ taskcluster.docker.workerType }}'
-- extra:
-    github:
-      branches: [master]
-      events: [push]
-  metadata: {description: '', name: wpt-firefox-nightly-reftests-3, owner: '{{ event.head.user.email
-      }}', source: '{{ event.head.repo.url }}'}
-  payload:
-    artifacts:
-      public/results: {path: /home/test/artifacts, type: directory}
-    command: [/bin/bash, --login, -c, ">-\n            ~/start.sh &&\n           \
-        \ cd /home/test/web-platform-tests &&\n            git fetch {{event.head.repo.url}}\
-        \ &&\n            git config advice.detachedHead false &&\n            git\
-        \ checkout {{event.head.sha}} &&\n            ./tools/ci/ci_taskcluster.sh\
-        \ firefox reftests 3 6"]
-    image: harjgam/web-platform-tests:0.5
-    maxRunTime: 3600
-  provisionerId: '{{ taskcluster.docker.provisionerId }}'
-  workerType: '{{ taskcluster.docker.workerType }}'
-- extra:
-    github:
-      branches: [master]
-      events: [push]
-  metadata: {description: '', name: wpt-firefox-nightly-reftests-4, owner: '{{ event.head.user.email
-      }}', source: '{{ event.head.repo.url }}'}
-  payload:
-    artifacts:
-      public/results: {path: /home/test/artifacts, type: directory}
-    command: [/bin/bash, --login, -c, ">-\n            ~/start.sh &&\n           \
-        \ cd /home/test/web-platform-tests &&\n            git fetch {{event.head.repo.url}}\
-        \ &&\n            git config advice.detachedHead false &&\n            git\
-        \ checkout {{event.head.sha}} &&\n            ./tools/ci/ci_taskcluster.sh\
-        \ firefox reftests 4 6"]
-    image: harjgam/web-platform-tests:0.5
-    maxRunTime: 3600
-  provisionerId: '{{ taskcluster.docker.provisionerId }}'
-  workerType: '{{ taskcluster.docker.workerType }}'
-- extra:
-    github:
-      branches: [master]
-      events: [push]
-  metadata: {description: '', name: wpt-firefox-nightly-reftests-5, owner: '{{ event.head.user.email
-      }}', source: '{{ event.head.repo.url }}'}
-  payload:
-    artifacts:
-      public/results: {path: /home/test/artifacts, type: directory}
-    command: [/bin/bash, --login, -c, ">-\n            ~/start.sh &&\n           \
-        \ cd /home/test/web-platform-tests &&\n            git fetch {{event.head.repo.url}}\
-        \ &&\n            git config advice.detachedHead false &&\n            git\
-        \ checkout {{event.head.sha}} &&\n            ./tools/ci/ci_taskcluster.sh\
-        \ firefox reftests 5 6"]
-    image: harjgam/web-platform-tests:0.5
-    maxRunTime: 3600
-  provisionerId: '{{ taskcluster.docker.provisionerId }}'
-  workerType: '{{ taskcluster.docker.workerType }}'
-- extra:
-    github:
-      branches: [master]
-      events: [push]
-  metadata: {description: '', name: wpt-firefox-nightly-reftests-6, owner: '{{ event.head.user.email
-      }}', source: '{{ event.head.repo.url }}'}
-  payload:
-    artifacts:
-      public/results: {path: /home/test/artifacts, type: directory}
-    command: [/bin/bash, --login, -c, ">-\n            ~/start.sh &&\n           \
-        \ cd /home/test/web-platform-tests &&\n            git fetch {{event.head.repo.url}}\
-        \ &&\n            git config advice.detachedHead false &&\n            git\
-        \ checkout {{event.head.sha}} &&\n            ./tools/ci/ci_taskcluster.sh\
-        \ firefox reftests 6 6"]
     image: harjgam/web-platform-tests:0.5
     maxRunTime: 3600
   provisionerId: '{{ taskcluster.docker.provisionerId }}'

@@ -56,7 +56,7 @@ file_template = {
 
 suites = {
     "testharness": {"chunks": 12},
-    "reftests": {"chunks": 6},
+    "reftest": {"chunks": 6},
     "wdspec": {"chunks": 1}
 }
 
@@ -118,4 +118,3 @@ def run(venv, *args, **kwargs):
     with open(os.path.join(kwargs["dest"], ".taskcluster.yml"), "w") as f:
         yaml.dump(task_config, f)
 
-                
