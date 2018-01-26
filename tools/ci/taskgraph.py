@@ -19,7 +19,7 @@ task_template = {
         },
     },
     "payload": {
-        "maxRunTime": 3600,
+        "maxRunTime": 5400,
         "image": "harjgam/web-platform-tests:0.5",
         "command":[
             "/bin/bash",
@@ -117,4 +117,3 @@ def run(venv, *args, **kwargs):
 
     with open(os.path.join(kwargs["dest"], ".taskcluster.yml"), "w") as f:
         yaml.dump(task_config, f)
-
