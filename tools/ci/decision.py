@@ -60,20 +60,21 @@ def filter_triggers(event, all_tasks):
     return triggered
 
 
-def get_run_jobs():
+def get_run_jobs(event):
     import jobs
-    paths = jobs.get_paths(revish=None)
+    paths = jobs.get_paths(revish="%s..%s" % (event["before"],
+                                              event["after"]))
     return jobs.get_jobs(paths)
 
 
-def filter_schedule_if(tasks):
+def filter_schedule_if(event, tasks):
     scheduled = {}
     run_jobs = None
     for name, task in iteritems(tasks):
         if "schedule-if" in task:
             if "run-job" in task["schedule-if"]:
                 if run_jobs is None:
-                    run_jobs = get_run_jobs()
+                    run_jobs = get_run_jobs(event)
                 if any(item in run_jobs for item in task["schedule-if"]):
                     scheduled[name] = task
         else:
@@ -94,7 +95,8 @@ def build_full_command(event, task):
         "task_name": task["name"],
         "repo_url": event["repository"]["url"],
         "fetch_rev": get_fetch_rev(event),
-        "task_cmd": task["command"]
+        "task_cmd": task["command"],
+        "install_str": "",
     }
 
     options = task.get("options", {})
@@ -109,18 +111,20 @@ def build_full_command(event, task):
         options_args.append("--no-hosts")
     if options.get("checkout"):
         options_args.append("--checkout=%s" % options["checkout"])
+    for browser in options.get("browser", []):
+        options_args.append("--browser=%s" % browser)
+    if options.get("checkout"):
+        options_args.append("--checkout=%s" % options["checkout"])
+
 
     cmd_args["options_str"] = "\n".join("  %s" % item for item in options_args)
 
-    install_str = "";
     install_packages = task.get("install")
     if install_packages:
         install_items = ["apt update -qqy"]
         install_items.extend("apt install -qqy %s" % item
                              for item in install_packages)
-        install_str = "\n".join("sudo %s;" % item for item in install_items)
-
-    cmd_args["install_cmd"] = install_str
+        cmd_args["install_str"] = "\n".join("sudo %s;" % item for item in install_items)
 
     return ["/bin/bash",
             "--login",
@@ -223,7 +227,6 @@ def get_parser():
 
 
 def run(venv, **kwargs):
-    auth = taskcluster.Auth({'rootUrl': TC_ROOT}, taskcluster.optionsFromEnvironment())
     queue = taskcluster.Queue({'rootUrl': TC_ROOT})
 
     event = get_event(**kwargs)
@@ -231,9 +234,9 @@ def run(venv, **kwargs):
     all_tasks = taskgraph.load_tasks_from_path(os.path.join(here, "tasks/test.yml"))
 
     triggered_tasks = filter_triggers(event, all_tasks)
-    scheduled_tasks = filter_schedule_if(triggered_tasks)
+    scheduled_tasks = filter_schedule_if(event, triggered_tasks)
 
-    task_id_map = build_task_graph(event, all_tasks, triggered_tasks)
+    task_id_map = build_task_graph(event, all_tasks, scheduled_tasks)
 
     if not kwargs["dry_run"]:
         create_tasks(queue, task_id_map)
