@@ -11,10 +11,21 @@ tasks:
           branch:
             $if: "event.ref[:11] == 'refs/heads/'"
             then: "${event.ref[11:]}"
+            else: "${event.ref}"
         in: "branch:${branch}"
       else: "pull-request"
+    run_task:
+      $if: 'tasks_for == "github-push"'
+      then:
+        $if: 'event.ref in ["refs/heads/master", "refs/heads/epochs/daily", "refs/heads/epochs/weekly", "refs/heads/triggers/chrome_stable", "refs/heads/triggers/chrome_beta", "refs/heads/triggers/chrome_dev", "refs/heads/triggers/firefox_stable", "refs/heads/triggers/firefox_beta", "refs/heads/triggers/firefox_nightly"]'
+        then: true
+        else: false
+      else:
+        $if: 'tasks_for == "github-pull-request"'
+        then: true
+        else: false
   in:
-    - $if: '(tasks_for == "github-push" && event.ref in ["refs/heads/master", "refs/heads/epochs/daily", "refs/heads/epochs/weekly", "refs/heads/triggers/chrome_stable", "refs/heads/triggers/chrome_beta", "refs/heads/triggers/chrome_dev", "refs/heads/triggers/firefox_stable", "refs/heads/triggers/firefox_beta", "refs/heads/triggers/firefox_nightly"]) || tasks_for == "github-pull-request"'
+    - $if: run_task
       then:
         created: {$fromNow: ''}
         deadline: {$fromNow: '24 hours'}
@@ -44,7 +55,7 @@ tasks:
             - set -ex;
               ~/start.sh
                 ${event.repository.url}
-                ${event.ref};
+                ${event.after};
               cd ~/web-platform-tests;
               ./wpt decision
         scopes:
