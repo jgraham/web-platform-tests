@@ -115,7 +115,8 @@ def build_full_command(event, task):
         options_args.append("--browser=%s" % browser)
     if options.get("checkout"):
         options_args.append("--checkout=%s" % options["checkout"])
-
+    if options.get("install-certificates"):
+        options_args.append("--install-certificates")
 
     cmd_args["options_str"] = "\n".join("  %s" % item for item in options_args)
 

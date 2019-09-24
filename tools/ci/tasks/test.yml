@@ -24,12 +24,16 @@ components:
     vars:
       test-type: wdspec
 
-  wpt-run:
-    name: wpt-${vars.browser}-${vars.channel}-${vars.suite}-chunk-${chunks.id}
+  run-options:
     options:
       xvfb: true
       oom-killer: true
       hosts: true
+      install-certificates: true
+
+  wpt-run:
+    name: wpt-${vars.browser}-${vars.channel}-${vars.suite}-chunk-${chunks.id}
+    options:
       browser: ${vars.browser}
       channel: ${vars.channel}
     command: >-
@@ -138,6 +142,7 @@ tasks:
             ${vars.browser}-${vars.channel}-${vars.suite}:
               use:
                 - wpt-base
+                - run-options
                 - wpt-run
                 - browser-${vars.browser}
                 - wpt-${vars.suite}
@@ -158,6 +163,7 @@ tasks:
         wpt-${vars.browser}-${vars.channel}-stability:
           use:
             - wpt-base
+            - run-options
             - browser-${vars.browser}
           description: >-
             Verify that all tests affected by a pull request are stable
@@ -169,35 +175,44 @@ tasks:
             --
             --channel=${vars.channel}
             --verify
-          wpt-${vars.browser}-${vars.channel}-results:
-            description: >-
-              Collect results for all tests affected by a pull request in
-              ${vars.browser}.
-            command: >-
-              ./tools/ci/taskcluster-run.py
-              --commit-range base_head
-              ${vars.browser}
-              --
-              --channel=${vars.channel}
-              --no-fail-on-unexpected
-              --log-wptreport=../artifacts/wpt_report.json
-              --log-wptscreenshot=../artifacts/wpt_screenshot.txt
 
-          wpt-${vars.browser}-${vars.channel}-results-without-changes:
-            options:
-              checkout: base_head
-            description: >-
-              Collect results for all tests affected by a pull request in
-              ${vars.browser} but without the changes in the PR.
-            command: >-
-              ./tools/ci/taskcluster-run.py
-              --commit-range task_head
-              ${vars.browser}
-              --
-              --channel=${vars.channel}
-              --no-fail-on-unexpected
-              --log-wptreport=../artifacts/wpt_report.json
-              --log-wptscreenshot=../artifacts/wpt_screenshot.txt
+        wpt-${vars.browser}-${vars.channel}-results:
+          use:
+            - wpt-base
+            - run-options
+            - browser-${vars.browser}
+          description: >-
+            Collect results for all tests affected by a pull request in
+            ${vars.browser}.
+          command: >-
+            ./tools/ci/taskcluster-run.py
+            --commit-range base_head
+            ${vars.browser}
+            --
+            --channel=${vars.channel}
+            --no-fail-on-unexpected
+            --log-wptreport=../artifacts/wpt_report.json
+            --log-wptscreenshot=../artifacts/wpt_screenshot.txt
+
+        wpt-${vars.browser}-${vars.channel}-results-without-changes:
+          use:
+            - wpt-base
+            - run-options
+            - browser-${vars.browser}
+          options:
+            checkout: base_head
+          description: >-
+            Collect results for all tests affected by a pull request in
+            ${vars.browser} but without the changes in the PR.
+          command: >-
+            ./tools/ci/taskcluster-run.py
+            --commit-range task_head
+            ${vars.browser}
+            --
+            --channel=${vars.channel}
+            --no-fail-on-unexpected
+            --log-wptreport=../artifacts/wpt_report.json
+            --log-wptscreenshot=../artifacts/wpt_screenshot.txt
   - $map:
       for:
         - vars:
