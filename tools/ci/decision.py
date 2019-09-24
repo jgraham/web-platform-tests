@@ -1,12 +1,15 @@
+import argparse
 import json
 import os
+from collections import OrderedDict
 
 import taskcluster
-from six import iteritems
+from six import iteritems, itervalues
 from six.moves.urllib import request
 
 from . import taskgraph
 
+TC_ROOT = "https://taskcluster.net"
 QUEUE_BASE = "https://queue.taskcluster.net/v1/task"
 
 
@@ -39,7 +42,7 @@ def fetch_event_data():
     task_data = json.load(resp)
     event_data = task_data.get("extra", {}).get("github_event")
     if event_data is not None:
-        return json.loads(event_data)
+        return event_data
 
 
 def filter_triggers(event, all_tasks):
@@ -59,7 +62,7 @@ def filter_triggers(event, all_tasks):
 
 def get_run_jobs():
     import jobs
-    paths = jobs.get_paths()
+    paths = jobs.get_paths(revish=None)
     return jobs.get_jobs(paths)
 
 
@@ -134,18 +137,19 @@ cd web-platform-tests;
 """ % cmd_args]
 
 
-def create_tc_task(event, task, required_task_ids):
+def create_tc_task(event, task, taskgroup_id, required_task_ids):
     command = build_full_command(event, task)
     worker_type = ("wpt-docker-worker"
                    if event["repository"]["full_name"] == 'web-platform-tests/wpt'
                    else "github-worker")
     task_id = taskcluster.slugId()
     task_data = {
-        "taskGroupId": "", # TODO
+        "taskGroupId": taskgroup_id,
         "created": taskcluster.fromNowJSON(""),
         "deadline": taskcluster.fromNowJSON(task["deadline"]),
         "provisionerId": task["provisionerId"],
         "workerType": worker_type,
+        "priority": "lowest",
         "metadata": {
             "name": task["name"],
             "description": task.get("description", ""),
@@ -159,7 +163,7 @@ def create_tc_task(event, task, required_task_ids):
             "maxRunTime": task.get("maxRunTime"),
             "env": task.get("env", []),
         },
-        "extras": {
+        "extra": {
             "github_event": json.dumps(event)
         }
     }
@@ -170,7 +174,8 @@ def create_tc_task(event, task, required_task_ids):
 
 
 def build_task_graph(event, all_tasks, tasks):
-    task_id_map = {}
+    task_id_map = OrderedDict()
+    taskgroup_id = os.environ.get("TASK_ID", taskcluster.slugId())
 
     def add_task(task_name, task):
         required_ids = []
@@ -180,7 +185,7 @@ def build_task_graph(event, all_tasks, tasks):
                     add_task(required_name,
                              all_tasks[required_name])
                 required_ids.append(task_id_map[required_name][0])
-        task_id, task_data = create_tc_task(event, task, required_ids)
+        task_id, task_data = create_tc_task(event, task, taskgroup_id, required_ids)
         task_id_map[task_name] = (task_id, task_data)
 
     for task_name, task in iteritems(tasks):
@@ -188,19 +193,49 @@ def build_task_graph(event, all_tasks, tasks):
 
     return task_id_map
 
-def run(venv, **kwargs):
-    if "TASK_EVENT" in os.environ:
-        event = json.loads(os.environ["TASK_EVENT"])
+
+def create_tasks(queue, task_id_map):
+    for (task_id, task_data) in itervalues(task_id_map):
+        queue.createTask(task_id, task_data)
+
+
+def get_event(**kwargs):
+    if "event_path" in kwargs:
+        with open(kwargs["event_path"]) as f:
+            event_str = f.read()
+    elif "TASK_EVENT" in os.environ:
+        event_str = os.environ["TASK_EVENT"]
     else:
-        event = fetch_event_data()
+        event_str = fetch_event_data()
+    if not event_str:
+        raise ValueError("Can't find GitHub event definition; for local testing pass --event-path")
+    return json.loads(event_str)
+
+
+def get_parser():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--event-path",
+                        help="Path to file containing serialized GitHub event")
+    parser.add_argument("--dry-run", action="store_true",
+                        help="Don't actually create the tasks, just output the tasks that "
+                        "would be created")
+    return parser
+
+
+def run(venv, **kwargs):
+    auth = taskcluster.Auth({'rootUrl': TC_ROOT}, taskcluster.optionsFromEnvironment())
+    queue = taskcluster.Queue({'rootUrl': TC_ROOT})
+
+    event = get_event(**kwargs)
 
     all_tasks = taskgraph.load_tasks_from_path(os.path.join(here, "tasks/test.yml"))
-
-    print(json.dumps(all_tasks, indent=2))
 
     triggered_tasks = filter_triggers(event, all_tasks)
     scheduled_tasks = filter_schedule_if(triggered_tasks)
 
     task_id_map = build_task_graph(event, all_tasks, triggered_tasks)
 
-    print(json.dumps(task_id_map, indent=2))
+    if not kwargs["dry_run"]:
+        create_tasks(queue, task_id_map)
+    else:
+        print(json.dumps(task_id_map, indent=2))

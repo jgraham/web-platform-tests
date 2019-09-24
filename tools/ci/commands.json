@@ -37,6 +37,7 @@
   },
   "decision": {
     "path": "decision.py",
+    "parser": "get_parser",
     "script": "run",
     "help": "Run the decision task",
     "virtualenv": true,
