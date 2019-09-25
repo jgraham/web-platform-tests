@@ -34,7 +34,8 @@ components:
   wpt-run:
     name: wpt-${vars.browser}-${vars.channel}-${vars.suite}-chunk-${chunks.id}
     options:
-      browser: ${vars.browser}
+      browser:
+        - ${vars.browser}
       channel: ${vars.channel}
     command: >-
       ./tools/ci/taskcluster-run.py
@@ -163,7 +164,6 @@ tasks:
         - wpt-${vars.browser}-${vars.channel}-stability:
             use:
               - wpt-base
-              - run-options
               - browser-${vars.browser}
             description: >-
               Verify that all tests affected by a pull request are stable

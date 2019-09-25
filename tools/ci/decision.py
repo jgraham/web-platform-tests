@@ -142,8 +142,8 @@ def build_full_command(event, task):
         options_args.append("--xvfb")
     if not options.get("hosts"):
         options_args.append("--no-hosts")
-    if not options.get("hosts"):
-        options_args.append("--no-hosts")
+    else:
+        options_args.append("--hosts")
     if options.get("checkout"):
         options_args.append("--checkout=%s" % options["checkout"])
     for browser in options.get("browser", []):

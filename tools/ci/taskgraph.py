@@ -22,14 +22,10 @@ def update_recursive(data, update_data):
             initial_value = data[key]
             if isinstance(value, dict):
                 if not isinstance(initial_value, dict):
-                    import pdb
-                    pdb.set_trace()
                     raise ValueError
                 update_recursive(initial_value, value)
             elif isinstance(value, list):
                 if not isinstance(initial_value, list):
-                    import pdb
-                    pdb.set_trace()
                     raise ValueError
                 initial_value.extend(value)
             else:
