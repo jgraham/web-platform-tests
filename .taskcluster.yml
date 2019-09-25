@@ -59,6 +59,6 @@ tasks:
               cd ~/web-platform-tests;
               ./wpt decision
         scopes:
-          - scopes
+          - ${scopes}
         extra:
           github_event: "${event_str}"
