@@ -1,6 +1,7 @@
 import argparse
 import json
 import os
+import re
 from collections import OrderedDict
 
 import taskcluster
@@ -64,7 +65,32 @@ def get_run_jobs(event):
     import jobs
     paths = jobs.get_paths(revish="%s..%s" % (event["before"],
                                               event["after"]))
-    return jobs.get_jobs(paths)
+    path_jobs = jobs.get_jobs(paths)
+    all_jobs = path_jobs | get_extra_jobs(event)
+    return all_jobs
+
+
+def get_extra_jobs(event):
+    body = None
+    jobs = set()
+    if "commits" in event and event["commits"]:
+        body = event["commits"][0]["message"]
+    elif "pull_request" in event:
+        body = event["pull_request"]["body"]
+
+    if not body:
+        return jobs
+
+    regexp = re.compile(r"\s*tc-jobs:(.*)$")
+
+    for line in body.splitlines():
+        m = regexp.match(line)
+        if m:
+            items = m.group(1)
+            for item in items.split(","):
+                jobs.add(item.strip())
+            break
+    return jobs
 
 
 def filter_schedule_if(event, tasks):
@@ -75,7 +101,7 @@ def filter_schedule_if(event, tasks):
             if "run-job" in task["schedule-if"]:
                 if run_jobs is None:
                     run_jobs = get_run_jobs(event)
-                if any(item in run_jobs for item in task["schedule-if"]):
+                if "all" in run_jobs or any(item in run_jobs for item in task["schedule-if"]):
                     scheduled[name] = task
         else:
             scheduled[name] = task
