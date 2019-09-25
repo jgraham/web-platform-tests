@@ -7,7 +7,7 @@ from collections import OrderedDict
 
 import taskcluster
 from six import iteritems, itervalues
-from six.moves.urllib import request
+from six.moves.urllib.request import urlopen
 
 from . import taskgraph
 
@@ -43,7 +43,7 @@ def fetch_event_data():
         # For example under local testing
         return None
 
-    resp = request("%s/%s" % (QUEUE_BASE, task_id))
+    resp = urlopen("%s/%s" % (QUEUE_BASE, task_id))
 
     task_data = json.load(resp)
     event_data = task_data.get("extra", {}).get("github_event")
