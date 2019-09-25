@@ -31,7 +31,7 @@ tasks:
         deadline: {$fromNow: '24 hours'}
         provisionerId: aws-provisioner-v1
         workerType:
-          $if: event.repository.full_name == 'web-platform-tests/wpt'
+          $if: event.repository.full_name == 'web-platform-tests/wpt' || event.repository.full_name == 'jgraham/web-platform-tests'
           then:
             wpt-docker-worker
           else:
