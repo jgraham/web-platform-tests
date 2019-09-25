@@ -2,6 +2,7 @@ import argparse
 import json
 import os
 import re
+import logging
 from collections import OrderedDict
 
 import taskcluster
@@ -15,6 +16,10 @@ QUEUE_BASE = "https://queue.taskcluster.net/v1/task"
 
 
 here = os.path.abspath(os.path.dirname(__file__))
+
+
+logging.basicConfig()
+logger = logging.getLogger()
 
 
 def get_triggers(event):
@@ -34,7 +39,7 @@ def fetch_event_data():
     try:
         task_id = os.environ["TASK_ID"]
     except KeyError:
-        print("WARNING: Missing TASK_ID environment variable")
+        logger.warning("Missing TASK_ID environment variable")
         # For example under local testing
         return None
 
@@ -57,6 +62,7 @@ def filter_triggers(event, all_tasks):
                 for trigger_branch in task["trigger"]["branch"]:
                     if (trigger_branch == branch or
                         trigger_branch.endswith("*") and branch.startswith(trigger_branch[:-1])):
+                        logger.info("Triggers include task %s" % name)
                         triggered[name] = task
     return triggered
 
@@ -67,6 +73,7 @@ def get_run_jobs(event):
                                               event["after"]))
     path_jobs = jobs.get_jobs(paths)
     all_jobs = path_jobs | get_extra_jobs(event)
+    logger.info("Including jobs %s" % ", ".join(all_jobs))
     return all_jobs
 
 
@@ -103,8 +110,10 @@ def filter_schedule_if(event, tasks):
                     run_jobs = get_run_jobs(event)
                 if "all" in run_jobs or any(item in run_jobs for item in task["schedule-if"]):
                     scheduled[name] = task
+                    logger.info("Scheduled tasks include %s" % name)
         else:
             scheduled[name] = task
+            logger.info("Scheduled tasks include %s" % name)
     return scheduled
 
 
@@ -231,16 +240,24 @@ def create_tasks(queue, task_id_map):
 
 
 def get_event(**kwargs):
-    if "event_path" in kwargs:
-        with open(kwargs["event_path"]) as f:
-            event_str = f.read()
+    if kwargs["event_path"] is not None:
+        try:
+            with open(kwargs["event_path"]) as f:
+                event_str = f.read()
+        except IOError:
+            logger.error("Missing event file at path %s" % kwargs["event_path"])
+            rause
     elif "TASK_EVENT" in os.environ:
         event_str = os.environ["TASK_EVENT"]
     else:
         event_str = fetch_event_data()
     if not event_str:
         raise ValueError("Can't find GitHub event definition; for local testing pass --event-path")
-    return json.loads(event_str)
+    try:
+        return json.loads(event_str)
+    except ValueError:
+        logger.error("Event was not valid JSON")
+        raise
 
 
 def get_parser():
@@ -250,6 +267,8 @@ def get_parser():
     parser.add_argument("--dry-run", action="store_true",
                         help="Don't actually create the tasks, just output the tasks that "
                         "would be created")
+    parser.add_argument("--tasks-path",
+                        help="Path to file in which to write payload for all scheduled tasks")
     return parser
 
 
@@ -269,3 +288,7 @@ def run(venv, **kwargs):
         create_tasks(queue, task_id_map)
     else:
         print(json.dumps(task_id_map, indent=2))
+
+    if kwargs["tasks_path"]:
+        with open(kwargs["tasks_path"], "w") as f:
+            json.dump(task_id_map, f, indent=2)

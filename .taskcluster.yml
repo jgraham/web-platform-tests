@@ -57,7 +57,7 @@ tasks:
                 ${event.repository.url}
                 ${event.after};
               cd ~/web-platform-tests;
-              ./wpt decision
+              ./wpt decision --tasks-path=/home/test/artifacts/tasks.json
         scopes:
           - ${scopes}
         extra:
