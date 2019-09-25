@@ -109,8 +109,10 @@ def expand_maps(task):
     assert set(map_data.keys()) == set(["for", "do"])
     rv = []
     for for_data in map_data["for"]:
-        do_values = expand_maps(map_data["do"])
-        for do_data in do_values:
+        do_items = map_data["do"]
+        if not isinstance(do_items, list):
+            do_items = expand_maps(do_items)
+        for do_data in do_items:
             task_data = deepcopy(for_data)
             assert len(do_data.keys()) == 1
             name = do_data.keys()[0]
