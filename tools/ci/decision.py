@@ -180,7 +180,7 @@ cd web-platform-tests;
 def create_tc_task(event, task, taskgroup_id, required_task_ids):
     command = build_full_command(event, task)
     worker_type = ("wpt-docker-worker"
-                   if event["repository"]["full_name"] == 'web-platform-tests/wpt'
+                   if event["repository"]["full_name"] in ['web-platform-tests/wpt', "jgraham/web-platform-tests"]
                    else "github-worker")
     task_id = taskcluster.slugId()
     task_data = {
