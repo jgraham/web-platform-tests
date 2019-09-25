@@ -12,8 +12,8 @@ tasks:
             $if: "event.ref[:11] == 'refs/heads/'"
             then: "${event.ref[11:]}"
             else: "${event.ref}"
-        in: "assume:repo:github.com/${event.repository.full_name}:branch:${branch}"
-      else: "assume:repo:github.com/${event.repository.full_name}:pull-request"
+        in: "repo:github.com/${event.repository.full_name}:branch:${branch}"
+      else: "repo:github.com/${event.repository.full_name}:pull-request"
     run_task:
       $if: 'tasks_for == "github-push"'
       then:
