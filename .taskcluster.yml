@@ -4,7 +4,7 @@ policy:
 tasks:
   $let:
     event_str: {$json: {$eval: event}}
-    scope_suffix:
+    scopes:
       $if: 'tasks_for == "github-push"'
       then:
         $let:
@@ -12,8 +12,8 @@ tasks:
             $if: "event.ref[:11] == 'refs/heads/'"
             then: "${event.ref[11:]}"
             else: "${event.ref}"
-        in: "branch:${branch}"
-      else: "pull-request"
+        in: "assume:repo:github.com/${event.repository.full_name}:branch:${branch}"
+      else: "assume:repo:github.com/${event.repository.full_name}:pull-request"
     run_task:
       $if: 'tasks_for == "github-push"'
       then:
@@ -59,6 +59,6 @@ tasks:
               cd ~/web-platform-tests;
               ./wpt decision
         scopes:
-          - assume:repo:github.com/web-platform-tests/wpt:${scope_suffix}
+          - scopes
         extra:
           github_event: "${event_str}"
