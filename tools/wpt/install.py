@@ -75,21 +75,22 @@ def run(venv, **kwargs):
             raise argparse.ArgumentError(None,
                                          "No --destination argument, and no default for the environment")
 
-    install(browser, kwargs["component"], destination, channel)
+    install(browser, kwargs["component"], destination, channel,
+            download_only=kwargs["download_only"])
 
 
-def install(name, component, destination, channel="nightly", logger=None):
+def install(name, component, destination, channel="nightly", logger=None, download_only=False):
     if logger is None:
         import logging
         logger = logging.getLogger("install")
 
-    if component == 'webdriver':
-        method = 'install_webdriver'
-    else:
-        method = 'install'
+    prefix = "download" if download_only else "install"
+    suffix = "_webdriver" if component == 'webdriver' else ""
+
+    method = prefix + suffix
 
     subclass = getattr(browser, name.title())
     sys.stdout.write('Now installing %s %s...\n' % (name, component))
     path = getattr(subclass(logger), method)(dest=destination, channel=channel)
     if path:
-        sys.stdout.write('Binary installed as %s\n' % (path,))
+        sys.stdout.write('Binary %s as %s\n' % ("downloaded" if download_only else "installed", path,))
