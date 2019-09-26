@@ -49,11 +49,15 @@ tasks:
               path: /home/test/artifacts
               type: directory
           command:
-            - ~/start.sh
+            - /bin/bash
+            - --login
+            - -c
+            - set -ex;
+              ~/start.sh
                 ${event.repository.url}
                 ${event.after};
-            - cd ~/web-platform-tests;
-            - ./wpt decision --tasks-path=/home/test/artifacts/tasks.json
+              cd ~/web-platform-tests;
+              ./wpt decision --tasks-path=/home/test/artifacts/tasks.json
           features :
             taskclusterProxy: true
         scopes:
