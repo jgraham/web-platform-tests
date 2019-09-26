@@ -42,6 +42,8 @@ def get_parser():
                         'the latest available development release. For WebDriver installs, '
                         'we attempt to select an appropriate, compatible, version for the '
                         'latest browser release on the selected channel.')
+    parser.add_argument('--download-only', action="store_true",
+                        help="Download the selected component but don't install it")
     parser.add_argument('-d', '--destination',
                         help='filesystem directory to place the component')
     return parser
