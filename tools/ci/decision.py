@@ -188,6 +188,7 @@ def create_tc_task(event, task, taskgroup_id, required_task_ids):
         "created": taskcluster.fromNowJSON(""),
         "deadline": taskcluster.fromNowJSON(task["deadline"]),
         "provisionerId": task["provisionerId"],
+        "schedulerId": task["schedulerId"],
         "workerType": worker_type,
         "metadata": {
             "name": task["name"],

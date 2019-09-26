@@ -1,6 +1,7 @@
 components:
   wpt-base:
     provisionerId: aws-provisioner-v1
+    schedulerId: taskcluster-github
     deadline: "24 hours"
     image: harjgam/web-platform-tests:0.33
     maxRunTime: 7200,
