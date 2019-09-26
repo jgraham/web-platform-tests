@@ -128,7 +128,7 @@ def checkout_revision(rev):
 def install_certificates():
     subprocess.check_call(["sudo", "cp", "tools/certs/cacert.pem",
                            "/usr/local/share/ca-certificates/cacert.crt"])
-    subprocess.check_call(["update-ca-certificates"])
+    subprocess.check_call(["sudo", "update-ca-certificates"])
 
 
 def install_chrome(channel):

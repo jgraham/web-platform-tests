@@ -235,7 +235,7 @@ tasks:
         - trigger-pr
       description: >-
         Lint for wpt-specific requirements
-      command: "wpt-lint --all"
+      command: "./wpt lint --all"
 
   - update-built:
       use:
@@ -244,7 +244,7 @@ tasks:
       schedule-if:
         run-job:
           - update_built
-      command: "tools/ci/ci_built_diff.sh"
+      command: "./tools/ci/ci_built_diff.sh"
 
   - tools/unittests (Python 2):
       use:
@@ -253,7 +253,7 @@ tasks:
         - tox-python2
       description: >-
         Unit tests for tools running under Python 2.7, excluding wptrunner
-      command: tools/ci/ci_tools_unittest.sh
+      command: ./tools/ci/ci_tools_unittest.sh
       env:
         HYPOTHESIS_PROFILE: ci
       schedule-if:
@@ -267,7 +267,7 @@ tasks:
         - wpt-base
         - trigger-pr
         - tox-python3
-      command: tools/ci/ci_tools_unittest.sh
+      command: ./tools/ci/ci_tools_unittest.sh
       env:
         HYPOTHESIS_PROFILE: ci
       schedule-if:
@@ -281,7 +281,7 @@ tasks:
         - wpt-base
         - trigger-pr
         - tox-python2
-      command: tools/ci/ci_wpt.sh
+      command: ./tools/ci/ci_wpt.sh
       install:
         - libnss3-tools
       options:
@@ -302,7 +302,7 @@ tasks:
         - wpt-base
         - trigger-pr
         - tox-python2
-      command: tools/ci/ci_resources_unittest.sh
+      command: ./tools/ci/ci_resources_unittest.sh
       options:
         browser:
           - firefox
@@ -319,7 +319,7 @@ tasks:
         - wpt-base
         - trigger-pr
         - tox-python2
-      command: tools/ci/ci_wpt.sh
+      command: ./tools/ci/ci_wpt.sh
       install:
         - libnss3-tools
         - libappindicator1
