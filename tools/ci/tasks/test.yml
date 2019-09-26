@@ -226,7 +226,7 @@ tasks:
         download-firefox-${vars.channel}:
           use:
             - wpt-base
-          command: "./wpt download --channel=${vars.channel} firefox browser"
+          command: "./wpt install --download-only --channel=${vars.channel} firefox browser"
 
   - lint:
       use:
