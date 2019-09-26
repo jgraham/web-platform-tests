@@ -54,6 +54,8 @@ tasks:
                 ${event.after};
             - cd ~/web-platform-tests;
             - ./wpt decision --tasks-path=/home/test/artifacts/tasks.json
+          features :
+            taskclusterProxy: true
         scopes:
           - ${scopes}
         extra:
