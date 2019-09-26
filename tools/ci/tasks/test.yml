@@ -236,7 +236,6 @@ tasks:
       description: >-
         Lint for wpt-specific requirements
       command: "wpt-lint --all"
-      description:
 
   - update-built:
       use:

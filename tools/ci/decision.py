@@ -196,7 +196,7 @@ def create_tc_task(event, task, taskgroup_id, required_task_ids):
             "command": command,
             "image": task.get("image"),
             "maxRunTime": task.get("maxRunTime"),
-            "env": task.get("env", []),
+            "env": task.get("env", {}),
         },
         "extra": {
             "github_event": json.dumps(event)
