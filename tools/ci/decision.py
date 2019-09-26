@@ -279,11 +279,12 @@ def run(venv, **kwargs):
 
     task_id_map = build_task_graph(event, all_tasks, scheduled_tasks)
 
-    if not kwargs["dry_run"]:
-        create_tasks(queue, task_id_map)
-    else:
-        print(json.dumps(task_id_map, indent=2))
-
-    if kwargs["tasks_path"]:
-        with open(kwargs["tasks_path"], "w") as f:
-            json.dump(task_id_map, f, indent=2)
+    try:
+        if not kwargs["dry_run"]:
+            create_tasks(queue, task_id_map)
+        else:
+            print(json.dumps(task_id_map, indent=2))
+    finally:
+        if kwargs["tasks_path"]:
+            with open(kwargs["tasks_path"], "w") as f:
+                json.dump(task_id_map, f, indent=2)
