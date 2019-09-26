@@ -182,7 +182,7 @@ def setup_environment(args):
     if args.hosts_file:
         make_hosts_file()
 
-    if args["install_certificates"]:
+    if args.install_certificates:
         install_certificates()
 
     if "chrome" in args.browser:
