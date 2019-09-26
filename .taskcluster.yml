@@ -49,15 +49,11 @@ tasks:
               path: /home/test/artifacts
               type: directory
           command:
-            - /bin/bash
-            - --login
-            - -c
-            - set -ex;
-              ~/start.sh
+            - ~/start.sh
                 ${event.repository.url}
                 ${event.after};
-              cd ~/web-platform-tests;
-              ./wpt decision --tasks-path=/home/test/artifacts/tasks.json
+            - cd ~/web-platform-tests;
+            - ./wpt decision --tasks-path=/home/test/artifacts/tasks.json
         scopes:
           - ${scopes}
         extra:
