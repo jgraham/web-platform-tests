@@ -54,7 +54,7 @@ tasks:
             - -c
             - set -ex;
               ~/start.sh
-                ${event.repository.url}
+                ${event.repository.clone_url}
                 ${event.after};
               cd ~/web-platform-tests;
               ./wpt decision --tasks-path=/home/test/artifacts/tasks.json
