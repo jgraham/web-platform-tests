@@ -7,12 +7,8 @@ from collections import OrderedDict
 
 import taskcluster
 from six import iteritems, itervalues
-from six.moves.urllib.request import urlopen
 
 from . import taskgraph
-
-TC_ROOT = "https://taskcluster.net"
-QUEUE_BASE = "https://queue.taskcluster.net/v1/task"
 
 
 here = os.path.abspath(os.path.dirname(__file__))
@@ -35,7 +31,7 @@ def get_triggers(event):
     return pull_request, branch
 
 
-def fetch_event_data():
+def fetch_event_data(queue):
     try:
         task_id = os.environ["TASK_ID"]
     except KeyError:
@@ -43,9 +39,8 @@ def fetch_event_data():
         # For example under local testing
         return None
 
-    resp = urlopen("%s/%s" % (QUEUE_BASE, task_id))
+    task_data = queue.task(task_id)
 
-    task_data = json.load(resp)
     event_data = task_data.get("extra", {}).get("github_event")
     if event_data is not None:
         return event_data
@@ -239,7 +234,7 @@ def create_tasks(queue, task_id_map):
         queue.createTask(task_id, task_data)
 
 
-def get_event(**kwargs):
+def get_event(queue, **kwargs):
     if kwargs["event_path"] is not None:
         try:
             with open(kwargs["event_path"]) as f:
@@ -250,7 +245,7 @@ def get_event(**kwargs):
     elif "TASK_EVENT" in os.environ:
         event_str = os.environ["TASK_EVENT"]
     else:
-        event_str = fetch_event_data()
+        event_str = fetch_event_data(queue)
     if not event_str:
         raise ValueError("Can't find GitHub event definition; for local testing pass --event-path")
     try:
@@ -273,9 +268,9 @@ def get_parser():
 
 
 def run(venv, **kwargs):
-    queue = taskcluster.Queue({'rootUrl': TC_ROOT})
+    queue = taskcluster.Queue({'rootUrl': os.environ['TASKCLUSTER_PROXY_URL']})
 
-    event = get_event(**kwargs)
+    event = get_event(queue, **kwargs)
 
     all_tasks = taskgraph.load_tasks_from_path(os.path.join(here, "tasks/test.yml"))
 
