@@ -189,7 +189,6 @@ def create_tc_task(event, task, taskgroup_id, required_task_ids):
         "deadline": taskcluster.fromNowJSON(task["deadline"]),
         "provisionerId": task["provisionerId"],
         "workerType": worker_type,
-        "priority": "lowest",
         "metadata": {
             "name": task["name"],
             "description": task.get("description", ""),
@@ -246,7 +245,7 @@ def get_event(**kwargs):
                 event_str = f.read()
         except IOError:
             logger.error("Missing event file at path %s" % kwargs["event_path"])
-            rause
+            raise
     elif "TASK_EVENT" in os.environ:
         event_str = os.environ["TASK_EVENT"]
     else:
