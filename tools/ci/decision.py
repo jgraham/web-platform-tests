@@ -148,7 +148,7 @@ def build_full_command(event, task):
     if options.get("install-certificates"):
         options_args.append("--install-certificates")
 
-    cmd_args["options_str"] = "\n".join("  %s \\" % item for item in options_args)
+    cmd_args["options_str"] = " ".join("%s" % item for item in options_args)
 
     install_packages = task.get("install")
     if install_packages:
@@ -161,14 +161,12 @@ def build_full_command(event, task):
             "--login",
             "-c",
             """
-~/start.sh
-  %(repo_url)s
+~/start.sh \
+  %(repo_url)s \
   %(fetch_rev)s;
 %(install_str)s
 cd web-platform-tests;
-./tools/ci/run_tc.py \
-%(options_str)s \
-  %(task_cmd)s;
+./tools/ci/run_tc.py %(options_str)s -- %(task_cmd)s;
 """ % cmd_args]
 
 
