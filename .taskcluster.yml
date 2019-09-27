@@ -22,7 +22,10 @@ tasks:
         else: false
       else:
         $if: 'tasks_for == "github-pull-request"'
-        then: true
+        then:
+          $if: event.action in ['opened', 'reopened', 'synchronize']
+          then: true
+          else: false
         else: false
   in:
     - $if: run_task
