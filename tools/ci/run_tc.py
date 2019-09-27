@@ -38,7 +38,6 @@ the serialization of a GitHub event payload.
 import argparse
 import json
 import os
-import re
 import subprocess
 import sys
 try:

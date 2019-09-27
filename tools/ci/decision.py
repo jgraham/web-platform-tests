@@ -65,10 +65,10 @@ def filter_triggers(event, all_tasks):
 
 def get_run_jobs(event):
     import jobs
-    revish="%s..%s" % (event["pull_request"]["base"]["sha"]
-                       if "pull_request" in event
-                       else event["before"],
-                       event["after"])
+    revish = "%s..%s" % (event["pull_request"]["base"]["sha"]
+                         if "pull_request" in event
+                         else event["before"],
+                         event["after"])
     logger.info("Looking for changes in range %s" % revish)
     paths = jobs.get_paths(revish=revish)
     logger.info("Found changes in paths:%s" % "\n".join(paths))

@@ -181,6 +181,7 @@ class Firefox(Browser):
         import mozinstall
 
         installer_path = self.download(dest, channel)
+        filename = os.path.basename(installer_path)
 
         try:
             mozinstall.install(installer_path, dest)
