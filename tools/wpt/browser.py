@@ -118,6 +118,18 @@ class Firefox(Browser):
 
         return "%s%s" % (self.platform, bits)
 
+    def _get_dest(self, dest, channel):
+        if dest is None:
+            # os.getcwd() doesn't include the venv path
+            dest = os.path.join(os.getcwd(), "_venv")
+
+        dest = os.path.join(dest, "browsers", channel)
+
+        if not os.path.exists(dest):
+            os.makedirs(dest)
+
+        return dest
+
     def download(self, dest=None, channel="nightly"):
         product = {
             "nightly": "firefox-nightly-latest-ssl",
@@ -134,20 +146,14 @@ class Firefox(Browser):
         }
         os_key = (self.platform, uname[4])
 
+        if dest is None:
+            dest = self._get_dest(None, channel)
+
         if channel not in product:
             raise ValueError("Unrecognised release channel: %s" % channel)
 
         if os_key not in os_builds:
             raise ValueError("Unsupported platform: %s %s" % os_key)
-
-        if dest is None:
-            # os.getcwd() doesn't include the venv path
-            dest = os.path.join(os.getcwd(), "_venv")
-
-        dest = os.path.join(dest, "browsers", channel)
-
-        if not os.path.exists(dest):
-            os.makedirs(dest)
 
         url = "https://download.mozilla.org/?product=%s&os=%s&lang=en-US" % (product[channel],
                                                                              os_builds[os_key])
@@ -177,8 +183,9 @@ class Firefox(Browser):
 
     def install(self, dest=None, channel="nightly"):
         """Install Firefox."""
-
         import mozinstall
+
+        dest = self._get_dest(dest, channel)
 
         installer_path = self.download(dest, channel)
         filename = os.path.basename(installer_path)
