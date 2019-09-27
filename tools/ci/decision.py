@@ -64,8 +64,11 @@ def filter_triggers(event, all_tasks):
 
 def get_run_jobs(event):
     import jobs
-    paths = jobs.get_paths(revish="%s..%s" % (event["before"],
-                                              event["after"]))
+    revish="%s..%s" % (event["before"],
+                       event["after"])
+    logger.info("Looking for changes in range %s" % revish)
+    paths = jobs.get_paths(revish=revish)
+    logger.info("Found changes in paths:%s" % "\n".join(paths))
     path_jobs = jobs.get_jobs(paths)
     all_jobs = path_jobs | get_extra_jobs(event)
     logger.info("Including jobs %s" % ", ".join(all_jobs))
@@ -123,7 +126,7 @@ def get_fetch_rev(event):
 def build_full_command(event, task):
     cmd_args = {
         "task_name": task["name"],
-        "repo_url": event["repository"]["url"],
+        "repo_url": event["repository"]["clone_url"],
         "fetch_rev": get_fetch_rev(event),
         "task_cmd": task["command"],
         "install_str": "",
@@ -189,7 +192,7 @@ def create_tc_task(event, task, taskgroup_id, required_task_ids):
             "name": task["name"],
             "description": task.get("description", ""),
             "owner": "%s@users.noreply.github.com" % event["sender"]["login"],
-            "source": event["repository"]["url"]
+            "source": event["repository"]["clone_url"]
         },
         "payload": {
             "artifacts": task.get("artifacts"),
