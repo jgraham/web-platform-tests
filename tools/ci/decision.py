@@ -127,7 +127,7 @@ def get_fetch_rev(event):
             output = subprocess.check_output(["git", "ls-remote", "origin", ref])
         except subprocess.CalledProcessError:
             import traceback
-            logger.error(join(traceback.format_exc())
+            logger.error(traceback.format_exc())
             logger.error("Failed to get merge commit sha2")
             return ref
         if not output:
