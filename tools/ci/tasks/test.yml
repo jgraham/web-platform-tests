@@ -321,7 +321,7 @@ tasks:
         - wpt-base
         - trigger-pr
         - tox-python2
-      command: ./tools/ci/ci_wpt.sh
+      command: ./tools/ci/ci_wptrunner_infrastructure.sh
       install:
         - libnss3-tools
         - libappindicator1
@@ -333,7 +333,7 @@ tasks:
           - chrome
         channel: experimental
         xvfb: true
-        hosts: true
+        hosts: false
       schedule-if:
         run-job:
           - wptrunner_infrastructure
