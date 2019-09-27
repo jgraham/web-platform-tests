@@ -59,7 +59,7 @@ def filter_triggers(event, all_tasks):
                     if (trigger_branch == branch or
                         trigger_branch.endswith("*") and branch.startswith(trigger_branch[:-1])):
                         triggered[name] = task
-    logger.info("Triggers match tasks:\n%s" % "\n".join(triggered.keys()))
+    logger.info("Triggers match tasks:\n * %s" % "\n * ".join(triggered.keys()))
     return triggered
 
 
@@ -74,7 +74,7 @@ def get_run_jobs(event):
     logger.info("Found changes in paths:%s" % "\n".join(paths))
     path_jobs = jobs.get_jobs(paths)
     all_jobs = path_jobs | get_extra_jobs(event)
-    logger.info("Including jobs %s" % ", ".join(all_jobs))
+    logger.info("Including jobs:\n * %s" % "\n * ".join(all_jobs))
     return all_jobs
 
 
@@ -113,7 +113,7 @@ def filter_schedule_if(event, tasks):
                     scheduled[name] = task
         else:
             scheduled[name] = task
-    logger.info("Scheduling rules match tasks:\n%s" % "\n".join(scheduled.keys()))
+    logger.info("Scheduling rules match tasks:\n * %s" % "\n * ".join(scheduled.keys()))
     return scheduled
 
 

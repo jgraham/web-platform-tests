@@ -291,6 +291,7 @@ tasks:
           - chrome
         channel: experimental
         xvfb: true
+        hosts: true
       schedule-if:
         run-job:
           - wpt_integration
@@ -308,6 +309,7 @@ tasks:
           - firefox
         channel: experimental
         xvfb: true
+        hosts: true
       schedule-if:
         run-job:
           - resources_unittest
@@ -331,7 +333,7 @@ tasks:
           - chrome
         channel: experimental
         xvfb: true
-        hosts: false
+        hosts: true
       schedule-if:
         run-job:
           - wptrunner_infrastructure
