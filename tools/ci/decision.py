@@ -1,8 +1,9 @@
 import argparse
 import json
+import logging
 import os
 import re
-import logging
+import subprocess
 from collections import OrderedDict
 
 import taskcluster
@@ -64,7 +65,9 @@ def filter_triggers(event, all_tasks):
 
 def get_run_jobs(event):
     import jobs
-    revish="%s..%s" % (event["before"],
+    revish="%s..%s" % (event["pull_request"]["base"]["sha"]
+                       if "pull_request" in event
+                       else event["before"],
                        event["after"])
     logger.info("Looking for changes in range %s" % revish)
     paths = jobs.get_paths(revish=revish)
@@ -118,7 +121,19 @@ def filter_schedule_if(event, tasks):
 def get_fetch_rev(event):
     is_pr, _ = get_triggers(event)
     if is_pr:
-        return event["pull_request"]["merge_commit_sha"]
+        # Try to get the actual rev so that all non-decision tasks are pinned to that
+        ref = "refs/pull/%s/merge" % event["pull_request"]["number"]
+        try:
+            output = subprocess.check_output(["git", "ls-remote", "origin", ref])
+        except subprocess.CalledProcessError:
+            import traceback
+            logger.error(join(traceback.format_exc())
+            logger.error("Failed to get merge commit sha2")
+            return ref
+        if not output:
+            logger.error("Failed to get merge commit")
+            return ref
+        return output.split()[0]
     else:
         return event["after"]
 
