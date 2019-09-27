@@ -58,8 +58,8 @@ def filter_triggers(event, all_tasks):
                 for trigger_branch in task["trigger"]["branch"]:
                     if (trigger_branch == branch or
                         trigger_branch.endswith("*") and branch.startswith(trigger_branch[:-1])):
-                        logger.info("Triggers include task %s" % name)
                         triggered[name] = task
+    logger.info("Triggers match tasks:\n%s" % "\n".join(triggered.keys()))
     return triggered
 
 
@@ -109,12 +109,11 @@ def filter_schedule_if(event, tasks):
             if "run-job" in task["schedule-if"]:
                 if run_jobs is None:
                     run_jobs = get_run_jobs(event)
-                if "all" in run_jobs or any(item in run_jobs for item in task["schedule-if"]):
+                if "all" in run_jobs or any(item in run_jobs for item in task["schedule-if"]["run-job"]):
                     scheduled[name] = task
-                    logger.info("Scheduled tasks include %s" % name)
         else:
             scheduled[name] = task
-            logger.info("Scheduled tasks include %s" % name)
+    logger.info("Scheduling rules match tasks:\n%s" % "\n".join(scheduled.keys()))
     return scheduled
 
 
