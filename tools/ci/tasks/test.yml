@@ -291,6 +291,7 @@ tasks:
           - chrome
         channel: experimental
         xvfb: true
+        hosts: true
       schedule-if:
         run-job:
           - wpt_integration
@@ -308,6 +309,7 @@ tasks:
           - firefox
         channel: experimental
         xvfb: true
+        hosts: true
       schedule-if:
         run-job:
           - resources_unittest
@@ -319,7 +321,7 @@ tasks:
         - wpt-base
         - trigger-pr
         - tox-python2
-      command: ./tools/ci/ci_wpt.sh
+      command: ./tools/ci/ci_wptrunner_infrastructure.sh
       install:
         - libnss3-tools
         - libappindicator1

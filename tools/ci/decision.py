@@ -1,8 +1,9 @@
 import argparse
 import json
+import logging
 import os
 import re
-import logging
+import subprocess
 from collections import OrderedDict
 
 import taskcluster
@@ -57,18 +58,23 @@ def filter_triggers(event, all_tasks):
                 for trigger_branch in task["trigger"]["branch"]:
                     if (trigger_branch == branch or
                         trigger_branch.endswith("*") and branch.startswith(trigger_branch[:-1])):
-                        logger.info("Triggers include task %s" % name)
                         triggered[name] = task
+    logger.info("Triggers match tasks:\n * %s" % "\n * ".join(triggered.keys()))
     return triggered
 
 
 def get_run_jobs(event):
     import jobs
-    paths = jobs.get_paths(revish="%s..%s" % (event["before"],
-                                              event["after"]))
+    revish = "%s..%s" % (event["pull_request"]["base"]["sha"]
+                         if "pull_request" in event
+                         else event["before"],
+                         event["after"])
+    logger.info("Looking for changes in range %s" % revish)
+    paths = jobs.get_paths(revish=revish)
+    logger.info("Found changes in paths:%s" % "\n".join(paths))
     path_jobs = jobs.get_jobs(paths)
     all_jobs = path_jobs | get_extra_jobs(event)
-    logger.info("Including jobs %s" % ", ".join(all_jobs))
+    logger.info("Including jobs:\n * %s" % "\n * ".join(all_jobs))
     return all_jobs
 
 
@@ -103,19 +109,30 @@ def filter_schedule_if(event, tasks):
             if "run-job" in task["schedule-if"]:
                 if run_jobs is None:
                     run_jobs = get_run_jobs(event)
-                if "all" in run_jobs or any(item in run_jobs for item in task["schedule-if"]):
+                if "all" in run_jobs or any(item in run_jobs for item in task["schedule-if"]["run-job"]):
                     scheduled[name] = task
-                    logger.info("Scheduled tasks include %s" % name)
         else:
             scheduled[name] = task
-            logger.info("Scheduled tasks include %s" % name)
+    logger.info("Scheduling rules match tasks:\n * %s" % "\n * ".join(scheduled.keys()))
     return scheduled
 
 
 def get_fetch_rev(event):
     is_pr, _ = get_triggers(event)
     if is_pr:
-        return event["pull_request"]["merge_commit_sha"]
+        # Try to get the actual rev so that all non-decision tasks are pinned to that
+        ref = "refs/pull/%s/merge" % event["pull_request"]["number"]
+        try:
+            output = subprocess.check_output(["git", "ls-remote", "origin", ref])
+        except subprocess.CalledProcessError:
+            import traceback
+            logger.error(traceback.format_exc())
+            logger.error("Failed to get merge commit sha2")
+            return ref
+        if not output:
+            logger.error("Failed to get merge commit")
+            return ref
+        return output.split()[0]
     else:
         return event["after"]
 
@@ -123,7 +140,7 @@ def get_fetch_rev(event):
 def build_full_command(event, task):
     cmd_args = {
         "task_name": task["name"],
-        "repo_url": event["repository"]["url"],
+        "repo_url": event["repository"]["clone_url"],
         "fetch_rev": get_fetch_rev(event),
         "task_cmd": task["command"],
         "install_str": "",
@@ -189,7 +206,7 @@ def create_tc_task(event, task, taskgroup_id, required_task_ids):
             "name": task["name"],
             "description": task.get("description", ""),
             "owner": "%s@users.noreply.github.com" % event["sender"]["login"],
-            "source": event["repository"]["url"]
+            "source": event["repository"]["clone_url"]
         },
         "payload": {
             "artifacts": task.get("artifacts"),

@@ -22,7 +22,10 @@ tasks:
         else: false
       else:
         $if: 'tasks_for == "github-pull-request"'
-        then: true
+        then:
+          $if: event.action in ['opened', 'reopened', 'synchronize']
+          then: true
+          else: false
         else: false
   in:
     - $if: run_task
@@ -39,8 +42,8 @@ tasks:
         metadata:
           name: "wpt Decision Task"
           description: "The task that creates all of the other tasks in the task graph"
-          owner: ${event.pusher.email}
-          source: ${event.repository.url}
+          owner: "${event.sender.login}@users.noreply.github.com"
+          source: ${event.repository.clone_url}
         payload:
           image: harjgam/web-platform-tests:0.33
           maxRunTime: 7200
@@ -54,7 +57,7 @@ tasks:
             - -c
             - set -ex;
               ~/start.sh
-                ${event.repository.url}
+                ${event.repository.clone_url}
                 ${event.after};
               cd ~/web-platform-tests;
               ./wpt decision --tasks-path=/home/test/artifacts/tasks.json
